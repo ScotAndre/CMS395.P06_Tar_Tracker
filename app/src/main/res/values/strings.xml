@@ -15,4 +15,5 @@
     <string name="enhanced_summary">Enhanced (Aggravated) BAC Limit</string>
     <string name="drinking_age_title">Drinking Age</string>
     <string name="drinking_age_summary">Legal Drinking Age</string>
+    <string name="title_activity_edit_preferences">EditPreferences</string>
 </resources>
