@@ -1,6 +1,18 @@
 <resources>
     <string name="app_name">Tar Tracker</string>
 
+    <!-- Default Entries -->
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <!-- Settings (Preferences) Activity -->
+    <string name="title_activity_settings">Preferences</string>
+    <string name="underage_title">Underage BAC Limit</string>
+    <string name="underage_bac_summary">Underage BAC Limit</string>
+    <string name="per_se_title">\"Per Se\" BAC Limit</string>
+    <string name="per_se_summary">Normal BAC Limit</string>
+    <string name="enhanced_title">Enhanced BAC Limit</string>
+    <string name="enhanced_summary">Enhanced (Aggravated) BAC Limit</string>
+    <string name="drinking_age_title">Drinking Age</string>
+    <string name="drinking_age_summary">Legal Drinking Age</string>
 </resources>
