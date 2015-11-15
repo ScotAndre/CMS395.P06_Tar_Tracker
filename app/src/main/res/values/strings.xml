@@ -31,4 +31,5 @@
 
     <!-- Number Game Activity -->>
     <string name="number_missed_start">Number Missed: 0</string>
+    <string name="title_activity_game">GameActivity</string>
 </resources>
