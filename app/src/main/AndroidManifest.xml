@@ -20,10 +20,6 @@
             android:name=".EditPreferences"
             android:label="@string/title_activity_edit_preferences" >
         </activity>
-        <activity
-            android:name=".NumberGameActivity"
-            android:label="@string/title_activity_number_game" >
-        </activity>
     </application>
 
 </manifest>

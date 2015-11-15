@@ -5,6 +5,17 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
+    <!-- Main Activity -->
+    <string name="button_main">Main</string>
+    <string name="button_game">Game</string>
+    <string name="button_preferences">Pref</string>
+    <string name="current_state">Suprisingly Sober</string>
+    <string name="button_reset">Reset</string>
+    <string name="bac_title">BAC</string>
+    <string name="bac_display_value_default">.00</string>
+    <string name="drink_count_label">Drink Count</string>
+    <string name="drink_count_value_default">0</string>
+
     <!-- Settings (Preferences) Activity -->
     <string name="title_activity_settings">Preferences</string>
     <string name="underage_title">Underage BAC Limit</string>
@@ -17,4 +28,7 @@
     <string name="drinking_age_summary">Legal Drinking Age</string>
     <string name="title_activity_edit_preferences">EditPreferences</string>
     <string name="title_activity_number_game">NumberGameActivity</string>
+
+    <!-- Number Game Activity -->>
+    <string name="number_missed_start">Number Missed: 0</string>
 </resources>
