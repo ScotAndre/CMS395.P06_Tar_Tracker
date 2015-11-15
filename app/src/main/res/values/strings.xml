@@ -29,7 +29,8 @@
     <string name="title_activity_edit_preferences">EditPreferences</string>
     <string name="title_activity_number_game">NumberGameActivity</string>
 
-    <!-- Number Game Activity -->>
-    <string name="number_missed_start">Number Missed: 0</string>
+    <!-- Number Game Activity -->
+    <string name="number_missed_label">Number Missed:</string>
+    <string name="number_missed_value_default">0</string>
     <string name="title_activity_game">GameActivity</string>
 </resources>
