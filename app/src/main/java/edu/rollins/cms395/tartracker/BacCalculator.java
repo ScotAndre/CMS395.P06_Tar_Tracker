@@ -11,7 +11,7 @@ package edu.rollins.cms395.tartracker;
  *          - 0.66 for women
  *      H is the number of hours since the last drink
  *
- *  The BAC decreases by 0.00125 every 5 minutes
+ *  The BAC decreases by 0.00125 for every 5 minutes that pass without drinking
  */
 public class BacCalculator {
     private double ounces = 0.0;
