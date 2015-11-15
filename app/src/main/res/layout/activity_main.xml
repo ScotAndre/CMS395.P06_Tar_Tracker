@@ -30,6 +30,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/button_game"
                 android:layout_weight="1"
+                android:onClick="loadGame"
                 />
             <Button
                 android:id="@+id/button_preferences"
@@ -84,6 +85,7 @@
                 android:layout_height="match_parent"
                 android:src="@drawable/beer_glass"
                 android:layout_weight=".35"
+                android:onClick="onClickAddDrink"
                 />
             </LinearLayout>
 
@@ -120,6 +122,7 @@
                     android:text="@string/button_reset"
                     android:textSize="20sp"
                     android:layout_weight="1"
+                    android:onClick="onClickResetButton"
                     />
             </LinearLayout>
 

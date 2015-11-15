@@ -3,6 +3,8 @@
 
     <!-- Default Entries -->
     <string name="hello_world">Hello world!</string>
+
+    <!-- Menu Items -->
     <string name="action_settings">Settings</string>
 
     <!-- Main Activity -->

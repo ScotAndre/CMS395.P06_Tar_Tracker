@@ -1,11 +1,15 @@
 package edu.rollins.cms395.tartracker;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private SharedPreferences mPrefs;
@@ -44,5 +48,17 @@ public class MainActivity extends AppCompatActivity {
     public void setPreferences(){
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
+    }
+
+    public void loadGame(View view){
+        startActivity(new Intent(getApplicationContext(), GameActivity.class));
+    }
+
+    public void onClickAddDrink(View view){
+        Toast.makeText(this, "Drink Added", Toast.LENGTH_LONG).show();
+    }
+
+    public void onClickResetButton(View view){
+        Toast.makeText(this, "Reset Button Clicked", Toast.LENGTH_LONG).show();
     }
 }

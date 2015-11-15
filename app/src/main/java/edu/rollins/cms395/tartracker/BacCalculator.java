@@ -14,20 +14,25 @@ package edu.rollins.cms395.tartracker;
  *  The BAC decreases by 0.00125 for every 5 minutes that pass without drinking
  */
 public class BacCalculator {
-    private double ounces = 0.0;
-    private int weight = 0;
-    private static final double MALE_RATIO = 0.73;
-    private static final double FEMALE_RATIO = 0.66;
-    private double ratio = 0.0;
-    private int minutesSinceLastDrink = 0;
-    private boolean isMale = true;
-    private double bac = 0.0;
+    private static final double MALE_DIST_RATE = 0.73;
+    private static final double FEMALE_DIST_RATE = 0.66;
+    private static final double BAC_DISSIPATION_RATE = 0.00125;
+    private int drinkCount = 0;
 
-    public BacCalculator(){
-
+    public void addDrink(){
+        drinkCount++;
+        // TODO: add drink and timestamp to database
     }
 
-    public double getBAC(){
-        return bac;
+    public void resetDrinkCounter(){
+        drinkCount = 0;
+        // do we want to remove the drinks from the database?
     }
+
+    public int getDrinkCount(){
+        return drinkCount;
+        // do we want to get this out of the database or use the counter?
+    }
+
+
 }
