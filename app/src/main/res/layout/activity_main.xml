@@ -16,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <Button
                 android:id="@+id/button_main"
                 android:layout_width="match_parent"
@@ -44,6 +45,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_weight=".40">
+
             <TextView
                 android:id="@+id/current_state"
                 android:layout_width="match_parent"
@@ -53,8 +55,8 @@
                 android:textSize="40sp"
                 android:textStyle="bold"
                 />
-
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -84,11 +86,13 @@
                 android:layout_weight=".35"
                 />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:layout_weight="1">
+
                 <TextView
                     android:id="@+id/bac_title_label"
                     android:layout_width="match_parent"
