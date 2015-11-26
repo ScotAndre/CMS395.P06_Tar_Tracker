@@ -1,8 +1,10 @@
 package edu.rollins.cms395.tartracker;
 
 import android.content.Context;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 /**
  * Created by kshiver on 11/26/2015.
@@ -38,6 +40,36 @@ public class DatabaseManager extends SQLiteOpenHelper {
      */
     @Override
     public void onCreate(SQLiteDatabase db) {
+        String sqlCreateProfile = "create table " + PROFILE_TABLE + "("
+                + NAME + " text primary key, "
+                + AGE + " integer, "
+                + WEIGHT + " integer, "
+                + GENDER + " text"
+                + ")";
+
+        String sqlCreateLocation = "create table " + LOCATION_TABLE + "("
+                + LOCATION_ID + " integer primary key autoincrement,"
+                + NAME + " text, "
+                + LATITUDE + " integer, "
+                + LONGITUDE + " integer, "
+                + ADDRESS + " text"
+                + ")";
+
+        String sqlCreateDrink = "create table " + DRINK_TABLE + "("
+                + TYPE + " text, "
+                + TIMESTAMP + " integer, "
+                + LOCATION_ID + " integer, "
+                + "FOREIGN KEY (" + LOCATION_ID +") REFERENCES "
+                + LOCATION_TABLE + "(" + LOCATION_ID + ")";
+
+        try {
+            db.execSQL(sqlCreateProfile);
+            db.execSQL(sqlCreateLocation);
+            db.execSQL(sqlCreateDrink);
+        }catch ( SQLException se ) {
+            Toast.makeText(mContext, se.getMessage(), Toast.LENGTH_LONG).show( );
+        }
+
     }
 
     /**
