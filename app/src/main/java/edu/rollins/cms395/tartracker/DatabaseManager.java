@@ -1,8 +1,10 @@
 package edu.rollins.cms395.tartracker;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
@@ -96,4 +98,69 @@ public class DatabaseManager extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
+
+    public void insertProfile(String name, int age, int weight, String gender){
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues values = new ContentValues();
+            values.put(NAME, name);
+            values.put(AGE, age);
+            values.put(WEIGHT, weight);
+            values.put(GENDER, gender);
+            long newId = db.insert(PROFILE_TABLE, null, values);
+
+            if ( newId == - 1 ) {
+                Toast.makeText(mContext, R.string.insert_error, Toast.LENGTH_LONG ).show( );
+            } else {
+                Toast.makeText(mContext, R.string.insert_ok, Toast.LENGTH_LONG ).show( );
+            }
+
+            db.close();
+        } catch ( SQLiteException se ) {
+            Toast.makeText(mContext, se.getMessage( ), Toast.LENGTH_LONG ).show( );
+        }
+    }
+
+    public void insertLocation(String name, int latitude, int longitude, String address){
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues values = new ContentValues();
+            values.put(NAME, name);
+            values.put(LATITUDE, latitude);
+            values.put(LONGITUDE, longitude);
+            values.put(ADDRESS, address);
+            long newId = db.insert(LOCATION_TABLE, null, values);
+
+            if ( newId == - 1 ) {
+                Toast.makeText(mContext, R.string.insert_error, Toast.LENGTH_LONG ).show( );
+            } else {
+                Toast.makeText(mContext, R.string.insert_ok, Toast.LENGTH_LONG ).show( );
+            }
+            db.close();
+        } catch ( SQLiteException se ) {
+            Toast.makeText(mContext, se.getMessage( ), Toast.LENGTH_LONG ).show( );
+        }
+    }
+
+    public void insertDrink(String type, int time, int locationID){
+
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues values = new ContentValues();
+            values.put(TYPE, type);
+            values.put(TIMESTAMP, time);
+            values.put(LOCATION_ID, locationID);
+            long newId = db.insert(DRINK_TABLE, null, values);
+
+            if ( newId == - 1 ) {
+                Toast.makeText(mContext, R.string.insert_error, Toast.LENGTH_LONG ).show( );
+            } else {
+                Toast.makeText(mContext, R.string.insert_ok, Toast.LENGTH_LONG ).show( );
+            }
+            db.close();
+        } catch ( SQLiteException se ) {
+            Toast.makeText(mContext, se.getMessage( ), Toast.LENGTH_LONG ).show( );
+        }
+    }
+
 }

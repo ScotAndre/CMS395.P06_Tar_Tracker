@@ -35,4 +35,8 @@
     <string name="number_missed_label">Number Missed:</string>
     <string name="number_missed_value_default">0</string>
     <string name="title_activity_game">GameActivity</string>
+
+    <!-- DatabaseManager -->
+    <string name="insert_error">Insert Error</string>
+    <string name="insert_ok">Record Inserted</string>
 </resources>
