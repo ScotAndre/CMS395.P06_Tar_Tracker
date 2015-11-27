@@ -1,9 +1,11 @@
 package edu.rollins.cms395.tartracker;
 
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.TextView;
@@ -26,6 +28,8 @@ public class GameActivity extends AppCompatActivity {
     private int[] mButtonValues;
     private int[] mButtonCorrectOrder;
     private int mWrongAnswerCounter;
+    private int mButtonPressed;
+    private int mProgress;
     private Chronometer mTimer;
     private TextView mTvWrongAnswers;
     private boolean mGameInProgress = false;
@@ -96,5 +100,83 @@ public class GameActivity extends AppCompatActivity {
         for(int i = 0; i < mButtonValues.length; i++){
             mButtonValues[i] = numbers.get(i);
         }
+
+        // provide a sorted number list as the answers
+        Collections.sort(numbers);
+
+        // cycle through the sorted list of numbers from smallest to largest
+        // look up the index the current number occupies
+        // store that in an array listing the correct order
+        int indexOfSmallest;
+        int index = 0;
+        for(int smallest : numbers){
+            indexOfSmallest = numbers.indexOf(smallest);
+            mButtonCorrectOrder[index] = indexOfSmallest;
+            index++;
+        }
     }
+
+    private void startGame(){
+        // generate a new set of random numbers
+        generateRandomNumbers();
+
+        // set the counters to 0
+        mProgress = 0;
+        mWrongAnswerCounter = 0;
+
+        // reset the text of each button
+        for (int i = 0; i < mButtonValues.length; i++){
+            mNumberButtons[i].setText("" + mButtonValues[i]);
+        }
+
+        // start timer
+        mTimer.setBase(SystemClock.elapsedRealtime());
+        mTimer.start();
+
+        // set game in progress flag
+        mGameInProgress = true;
+    }
+
+    private void checkCorrectAnswer(){
+    }
+
+    // **************************** Button Listener *********************** //
+    View.OnClickListener mButtonListener = new View.OnClickListener(){
+        /**
+         * Called when a view has been clicked.
+         *
+         * @param v The view that was clicked.
+         */
+        @Override
+        public void onClick(View v) {
+            // if it is the first time a user clicks on a tile,
+            // this should start the game
+            if(!mGameInProgress){
+                startGame();
+                return;
+            }
+
+            // any other clicks should get checked to see if answer was right
+            switch (v.getId()){
+                case R.id.button_game_0:
+                    break;
+                case R.id.button_game_1:
+                    break;
+                case R.id.button_game_2:
+                    break;
+                case R.id.button_game_3:
+                    break;
+                case R.id.button_game_4:
+                    break;
+                case R.id.button_game_5:
+                    break;
+                case R.id.button_game_6:
+                    break;
+                case R.id.button_game_7:
+                    break;
+                case R.id.button_game_8:
+                    break;
+            }
+        }
+    };
 }
