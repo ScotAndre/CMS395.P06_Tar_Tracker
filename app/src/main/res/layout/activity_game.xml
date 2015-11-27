@@ -19,6 +19,31 @@
             android:layout_height="match_parent"
             android:layout_weight=".1">
 
+            <TableRow android:layout_weight=".1">
+                    <Button
+                        android:id="@+id/button_main"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/button_main"
+                        android:layout_weight="1"
+                        />
+                    <Button
+                        android:id="@+id/button_game"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/button_game"
+                        android:layout_weight="1"
+                        android:onClick="loadGame"
+                        />
+                    <Button
+                        android:id="@+id/button_preferences"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/button_preferences"
+                        android:layout_weight="1"
+                        />
+            </TableRow>
+
             <TableRow android:layout_weight="1">
                 <Button
                     android:id="@+id/button_game_0"
