@@ -147,8 +147,40 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
+
     private int calculateScore(long elapsedTime){
-        return 0;
+        /*
+         * Calculate score for the game. Smaller scores means higher sobriety,
+         * while higher scores suggest intoxication. The score is based on a
+         * value between 1 and 10, where 50% of the points are calculated from
+         * the time that is taken to complete the puzzle, and the other half
+         * calculated from the number of incorrect answers.
+         */
+        int adjustedTimeScore;
+        int score = mWrongAnswerCounter;
+
+        /*
+         * The elapsed time is given to us in milliseconds. We need to boil it
+         * down to a value between 1 and 5. A user that takes 20 seconds or
+         * longer receives a maximum (bad) score of 5, while a user that takes
+         * ten seconds or below is given a low score of 0.
+         */
+        adjustedTimeScore = (int) ((elapsedTime / 1000.0) -10) / 2;
+        if(adjustedTimeScore < 0){
+            adjustedTimeScore = 0;
+        } else if (adjustedTimeScore > 5){
+            adjustedTimeScore = 5;
+        }
+
+        score += adjustedTimeScore;
+
+        if(score == 0){
+            return 1;
+        } else if(score > 10){
+            return 10;
+        } else {
+            return score;
+        }
     }
 
     // **************************** Button Listener *********************** //
