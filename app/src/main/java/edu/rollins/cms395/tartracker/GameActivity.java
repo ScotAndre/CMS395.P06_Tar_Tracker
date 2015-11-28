@@ -137,7 +137,18 @@ public class GameActivity extends AppCompatActivity {
         mGameInProgress = true;
     }
 
+    private void endGame(){
+        // reset flag
+        // stop timer
+        // calculate elapsed time
+    }
+
     private void checkCorrectAnswer(){
+
+    }
+
+    private int calculateScore(long elapsedTime){
+        return 0;
     }
 
     // **************************** Button Listener *********************** //
