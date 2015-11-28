@@ -14,6 +14,21 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     private SharedPreferences mPrefs;
 
+    //TODO: merge Patrick's code into master
+    //TODO: add Patrick's new png file
+    //TODO: add Katie's string to strings.xml
+    //TODO: merge Katie's code
+    //TODO: add missing files to Git repository
+    //TODO: commit and publish changes
+    //TODO: test to make sure it works
+    //TODO: email Katie & Patrick that new master has been uploaded
+    //TODO: add button listeners to GameActivity
+    //TODO: finish GameActivity
+    //TODO: finish BAC Calculator
+
+    // Patrick:
+    //TODO: work on sound effects
+    //TODO: auto refresh mainActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

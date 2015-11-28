@@ -23,6 +23,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/button_main"
                 android:layout_weight="1"
+                style="@style/buttonStyle"
                 />
             <Button
                 android:id="@+id/button_game"
@@ -31,6 +32,7 @@
                 android:text="@string/button_game"
                 android:layout_weight="1"
                 android:onClick="loadGame"
+                style="@style/buttonStyle"
                 />
             <Button
                 android:id="@+id/button_preferences"
@@ -38,6 +40,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/button_preferences"
                 android:layout_weight="1"
+                style="@style/buttonStyle"
                 />
         </LinearLayout>
 
@@ -54,7 +57,7 @@
                 android:text="@string/current_state"
                 android:gravity="center"
                 android:textSize="40sp"
-                android:textStyle="bold"
+                style="@style/textViewStyle"
                 />
         </LinearLayout>
 
@@ -71,20 +74,20 @@
 
             <TextView
                 android:id="@+id/drink_count"
-                android:layout_width="match_parent"
+                android:layout_width="63dp"
                 android:layout_height="match_parent"
                 android:text="@string/drink_count_value_default"
-                android:layout_weight=".65"
                 android:textSize="40sp"
                 android:gravity="center"
-                android:textStyle="bold"
+                style="@style/textViewStyle"
                 />
             <ImageButton
                 android:id="@+id/button_add_drink"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/beer_glass"
+                android:src="@drawable/beer_glass_color"
                 android:layout_weight=".35"
+                android:scaleType="fitXY"
                 android:onClick="onClickAddDrink"
                 />
             </LinearLayout>
@@ -103,7 +106,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:textSize="30sp"
-                    android:textStyle="bold"
+                    style="@style/textViewStyle"
                     />
                 <TextView
                     android:id="@+id/bac_value"
@@ -111,18 +114,18 @@
                     android:layout_height="match_parent"
                     android:text="@string/bac_display_value_default"
                     android:textSize="30sp"
-                    android:textStyle="bold"
                     android:layout_weight="1"
                     android:gravity="center"
+                    style="@style/textViewStyle"
                     />
                 <Button
                     android:id="@+id/button_reset"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="@string/button_reset"
-                    android:textSize="20sp"
                     android:layout_weight="1"
                     android:onClick="onClickResetButton"
+                    style="@style/buttonStyle"
                     />
             </LinearLayout>
 

@@ -17,21 +17,20 @@ public class BacCalculator {
     private static final double MALE_DIST_RATE = 0.73;
     private static final double FEMALE_DIST_RATE = 0.66;
     private static final double BAC_DISSIPATION_RATE = 0.00125;
-    private int drinkCount = 0;
+    private int mDrinkCount = 0;
 
     public void addDrink(){
-        drinkCount++;
+        mDrinkCount++;
         // TODO: add drink and timestamp to database
     }
 
     public void resetDrinkCounter(){
-        drinkCount = 0;
+        mDrinkCount = 0;
         // do we want to remove the drinks from the database?
     }
 
-    public int getDrinkCount(){
-        return drinkCount;
-        // do we want to get this out of the database or use the counter?
+    public void getDrinkCount(){
+        // Get this out of the database
     }
 
 

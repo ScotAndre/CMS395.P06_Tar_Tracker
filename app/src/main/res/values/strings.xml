@@ -39,4 +39,5 @@
     <!-- DatabaseManager -->
     <string name="insert_error">Insert Error</string>
     <string name="insert_ok">Record Inserted</string>
+    <string name="no_data_found">No data found</string>
 </resources>
