@@ -33,6 +33,7 @@ public class GameActivity extends AppCompatActivity {
     private Chronometer mTimer;
     private TextView mTvWrongAnswers;
     private boolean mGameInProgress = false;
+    private int mGameScore;
 
 
     @Override
@@ -123,6 +124,7 @@ public class GameActivity extends AppCompatActivity {
         // set the counters to 0
         mProgress = 0;
         mWrongAnswerCounter = 0;
+        mGameScore = 0;
 
         // reset the text of each button
         for (int i = 0; i < mButtonValues.length; i++){
@@ -138,9 +140,17 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void endGame(){
+        // stop the timer
+        mTimer.stop();
+
         // reset flag
-        // stop timer
+        mGameInProgress = false;
+
         // calculate elapsed time
+        long elapsedTime = SystemClock.elapsedRealtime() - mTimer.getBase();
+
+        // calculate score
+        mGameScore = calculateScore(elapsedTime);
     }
 
     private void checkCorrectAnswer(){
