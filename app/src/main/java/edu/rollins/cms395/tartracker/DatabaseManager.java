@@ -2,6 +2,7 @@ package edu.rollins.cms395.tartracker;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
@@ -163,4 +164,46 @@ public class DatabaseManager extends SQLiteOpenHelper {
         }
     }
 
+    public void clearProfile(){
+        try{
+            SQLiteDatabase db = this.getWritableDatabase();
+            String deleteQuery = "DELETE FROM " + PROFILE_TABLE;
+            db.rawQuery(deleteQuery, null);
+            db.close();
+        }
+        catch (SQLException se) {
+            Toast.makeText(mContext, se.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public int countDrinks (){
+
+        int numDrinks = 0;
+
+        try{
+            SQLiteDatabase db = this.getReadableDatabase();
+            String countQuery = "SELECT * FROM " + DRINK_TABLE;
+            Cursor cursor = db.rawQuery(countQuery, null);
+            cursor.close();
+            numDrinks = cursor.getCount();
+            db.close();
+        }
+        catch (SQLException se) {
+            Toast.makeText(mContext, se.getMessage(), Toast.LENGTH_LONG).show();
+        }
+
+        return numDrinks;
+    }
+
+    public void clearDrinks (){
+        try{
+            SQLiteDatabase db = this.getWritableDatabase();
+            String deleteQuery = "DELETE FROM " + DRINK_TABLE;
+            db.rawQuery(deleteQuery, null);
+            db.close();
+        }
+        catch (SQLException se) {
+            Toast.makeText(mContext, se.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
 }
