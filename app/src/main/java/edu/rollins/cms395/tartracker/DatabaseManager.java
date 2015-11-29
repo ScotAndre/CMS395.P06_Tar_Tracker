@@ -45,14 +45,16 @@ public class DatabaseManager extends SQLiteOpenHelper {
      */
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sqlCreateProfile = "create table " + PROFILE_TABLE + "("
+        String sqlCreateProfile = "create table "
+                + PROFILE_TABLE + " ("
                 + NAME + " text primary key, "
                 + AGE + " integer, "
                 + WEIGHT + " integer, "
                 + GENDER + " text"
                 + ")";
 
-        String sqlCreateLocation = "create table " + LOCATION_TABLE + "("
+        String sqlCreateLocation = "create table "
+                + LOCATION_TABLE + " ("
                 + LOCATION_ID + " integer primary key autoincrement,"
                 + NAME + " text, "
                 + LATITUDE + " integer, "
@@ -66,7 +68,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
                 + TIMESTAMP + " INTEGER);";
 
         try {
-//            db.execSQL(sqlCreateProfile);
+            db.execSQL(sqlCreateProfile);
 //            db.execSQL(sqlCreateLocation);
             db.execSQL(sqlCreateDrinkTable);
         }catch ( SQLException se ) {
@@ -107,7 +109,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
             values.put(NAME, name);
             values.put(AGE, age);
             values.put(WEIGHT, weight);
-            values.put(GENDER, gender);
+            values.put(GENDER, gender.toUpperCase());
             long newId = db.insert(PROFILE_TABLE, null, values);
 
             if ( newId == - 1 ) {
@@ -221,7 +223,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
                 drinks.add(timeStamp);
                 cursor.moveToNext();
             }
-            cursor.close( );
+            cursor.close();
             db.close();
         }
         catch(SQLiteException sle){
@@ -229,6 +231,119 @@ public class DatabaseManager extends SQLiteOpenHelper {
         }
 
         return drinks;
+    }
+
+    public String getName(){
+        String name = "";
+        try{
+            SQLiteDatabase db = this.getReadableDatabase();
+            String sqlQuery = "SELECT " + NAME + " FROM " + PROFILE_TABLE;
+            Cursor cursor = db.rawQuery(sqlQuery, null);
+            name = cursor.getString(0);
+            db.close();
+        }
+        catch(SQLiteException sle){
+            Toast.makeText(mContext, sle.toString(), Toast.LENGTH_LONG).show();
+        }
+
+        return name;
+    }
+
+    public int getAge(){
+        int age = 0;
+        try{
+            SQLiteDatabase db = this.getReadableDatabase();
+            String sqlQuery = "SELECT " + AGE + " FROM " + PROFILE_TABLE;
+            Cursor cursor = db.rawQuery(sqlQuery, null);
+            age = cursor.getInt(0);
+            db.close();
+        }
+        catch(SQLiteException sle){
+            Toast.makeText(mContext, sle.toString(), Toast.LENGTH_LONG).show();
+        }
+        return age;
+    }
+
+    public int getWeight(){
+        int weight = 0;
+        try{
+            SQLiteDatabase db = this.getReadableDatabase();
+            String sqlQuery = "SELECT " + WEIGHT + " FROM " + PROFILE_TABLE;
+            Cursor cursor = db.rawQuery(sqlQuery, null);
+            weight = cursor.getInt(0);
+            db.close();
+        }
+        catch(SQLiteException sle){
+            Toast.makeText(mContext, sle.toString(), Toast.LENGTH_LONG).show();
+        }
+        return weight;
+    }
+
+    public String getGender(){
+        String gender="";
+        try{
+            SQLiteDatabase db = this.getReadableDatabase();
+            String sqlQuery = "SELECT " + GENDER + " FROM " + PROFILE_TABLE;
+            Cursor cursor = db.rawQuery(sqlQuery, null);
+            gender = cursor.getString(0);
+            db.close();
+        }
+        catch(SQLiteException sle){
+            Toast.makeText(mContext, sle.toString(), Toast.LENGTH_LONG).show();
+        }
+        return gender;
+    }
+
+    public void setName(String name){
+        try{
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues values = new ContentValues();
+            values.put(NAME,name);
+            db.update(PROFILE_TABLE, values, null, null);
+            db.close();
+        }
+        catch(SQLiteException sle){
+            Toast.makeText(mContext, sle.toString(), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void setAge(int age){
+        try{
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues values = new ContentValues();
+            values.put(AGE,age);
+            db.update(PROFILE_TABLE, values, null, null);
+            db.close();
+        }
+        catch(SQLiteException sle){
+            Toast.makeText(mContext, sle.toString(), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void setWeight(int weight){
+        try{
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues values = new ContentValues();
+            values.put(WEIGHT,weight);
+            db.update(PROFILE_TABLE, values, null, null);
+            db.close();
+        }
+        catch(SQLiteException sle){
+            Toast.makeText(mContext, sle.toString(), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void setGender(String gender){
+        try{
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues values = new ContentValues();
+            values.put(GENDER,gender.toUpperCase());
+            db.update(PROFILE_TABLE, values, null, null);
+            db.close();
+        }
+        catch(SQLiteException sle){
+            Toast.makeText(mContext, sle.toString(), Toast.LENGTH_LONG).show();
+        }
     }
 
 
