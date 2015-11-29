@@ -143,6 +143,21 @@ public class MainActivity extends AppCompatActivity {
 
     // *********************** Preferences **************************
     public void setPreferences(){
+        try{
 
+        } catch (NumberFormatException nfe){
+            // reset the default in case user entered a number that was too large
+            SharedPreferences.Editor sharedEditor = mPrefs.edit();
+
+            sharedEditor.putString("underage_bac_limit", String.valueOf(bac.BAC_UNDERAGE_LIMIT_DEFAULT));
+            sharedEditor.putString("per_se_bac_limit", String.valueOf(bac.BAC_PER_SE_LIMIT_DEFAULT));
+            sharedEditor.putString("enhanced_bac_limit", String.valueOf(bac.BAC_ENHANCED_LIMIT_DEFAULT));
+            sharedEditor.putString("drinking_age", String.valueOf(bac.LEGAL_AGE_DEFAULT));
+
+            bac.setUnderageBacLimit(bac.BAC_UNDERAGE_LIMIT_DEFAULT);
+            bac.setPerSeBacLimit(bac.BAC_PER_SE_LIMIT_DEFAULT);
+            bac.setEnhancedBacLimit(bac.BAC_ENHANCED_LIMIT_DEFAULT);
+            bac.setLegalDrinkingAge(bac.LEGAL_AGE_DEFAULT);
+        }
     }
 }

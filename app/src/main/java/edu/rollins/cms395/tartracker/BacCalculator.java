@@ -38,6 +38,13 @@ public class BacCalculator {
     public static final int AVERAGE_MALE_WEIGHT = 196;
     public static final int AVERAGE_FEMALE_WEIGHT = 166;
 
+    // Override defaults?
+    private double mPerSeBacLimit;
+    private double mUnderageBacLimit;
+    private double mEnhancedBacLimit;
+    private int mWeight;
+    private int mLegalDrinkingAge;
+
     public BacCalculator(Context context){
         mContext = context;
         db = new DatabaseManager(mContext);
@@ -91,5 +98,25 @@ public class BacCalculator {
         String bacString = df.format(bac);
 
         return Double.parseDouble(bacString);
+    }
+
+    public void setWeight(int weight){
+        mWeight = weight;
+    }
+
+    public void setPerSeBacLimit(double limit){
+        mPerSeBacLimit = limit;
+    }
+
+    public void setUnderageBacLimit(double limit){
+        mUnderageBacLimit = limit;
+    }
+
+    public void setEnhancedBacLimit(double limit){
+        mEnhancedBacLimit = limit;
+    }
+
+    public void setLegalDrinkingAge(int age){
+        mLegalDrinkingAge = age;
     }
 }
