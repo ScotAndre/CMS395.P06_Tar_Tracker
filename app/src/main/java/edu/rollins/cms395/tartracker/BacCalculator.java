@@ -1,5 +1,7 @@
 package edu.rollins.cms395.tartracker;
 
+import android.content.Context;
+
 /*
  *  BAC = (A * 5.14 / W * r) - 0.015 * H
  *
@@ -17,21 +19,26 @@ public class BacCalculator {
     private static final double MALE_DIST_RATE = 0.73;
     private static final double FEMALE_DIST_RATE = 0.66;
     private static final double BAC_DISSIPATION_RATE = 0.00125;
+    private Context mContext;
+    private DatabaseManager db;
+
     private int mDrinkCount = 0;
 
+    public BacCalculator(Context context){
+        mContext = context;
+        db = new DatabaseManager(mContext);
+    }
+
+    public int getmDrinkCount(){
+        return db.countDrinks();
+    }
+
     public void addDrink(){
-        mDrinkCount++;
-        // TODO: add drink and timestamp to database
+        long timeStamp = System.currentTimeMillis();
+        db.insertDrink(timeStamp);
     }
 
     public void resetDrinkCounter(){
-        mDrinkCount = 0;
-        // do we want to remove the drinks from the database?
+        db.clearDrinks();
     }
-
-    public void getDrinkCount(){
-        // Get this out of the database
-    }
-
-
 }

@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private SharedPreferences mPrefs;
-    private DatabaseManager db;
+    private BacCalculator bac;
     TextView tvDrinkCount;
 
     //TODO: add button listeners to GameActivity
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         setPreferences();
-        db = new DatabaseManager(this);
+        bac = new BacCalculator(this);
 
         tvDrinkCount = (TextView) findViewById(R.id.drink_count);
     }
@@ -69,17 +69,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickAddDrink(View view){
-        long timeStamp = System.currentTimeMillis();
         Toast.makeText(this, "Drink Button Clicked", Toast.LENGTH_LONG).show();
-        db.insertDrink(timeStamp);
-        Toast.makeText(this, "# of Drinks = " + db.countDrinks(), Toast.LENGTH_LONG).show();
-        tvDrinkCount.setText("" + db.countDrinks());
+        bac.addDrink();
+        Toast.makeText(this, "# of Drinks = " + bac.getmDrinkCount(), Toast.LENGTH_LONG).show();
+        tvDrinkCount.setText("" + bac.getmDrinkCount());
     }
 
     public void onClickResetButton(View view){
         Toast.makeText(this, "Reset Button Clicked", Toast.LENGTH_LONG).show();
-        db.clearDrinks();
-        tvDrinkCount.setText("" + db.countDrinks());
+        bac.resetDrinkCounter();
+        tvDrinkCount.setText("" + bac.getmDrinkCount());
 
     }
 }
