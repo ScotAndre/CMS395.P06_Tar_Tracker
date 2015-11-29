@@ -8,20 +8,15 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private SharedPreferences mPrefs;
+    private DatabaseManager db;
+    TextView tvDrinkCount;
 
-    //DONE: merge Patrick's code into master
-    //TODO: add Patrick's new png file
-    //DONE: add Katie's string to strings.xml
-    //TODO: merge Katie's code
-    //DONE: add missing files to Git repository
-    //DONE: commit and publish changes
-    //DONE: test to make sure it works
-    //TODO: email Katie & Patrick that new master has been uploaded
     //TODO: add button listeners to GameActivity
     //TODO: finish GameActivity
     //TODO: finish BAC Calculator
@@ -37,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
 
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         setPreferences();
+        db = new DatabaseManager(this);
+
+        tvDrinkCount = (TextView) findViewById(R.id.drink_count);
     }
 
     @Override
@@ -71,10 +69,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickAddDrink(View view){
-        Toast.makeText(this, "Drink Added", Toast.LENGTH_LONG).show();
+        long timeStamp = System.currentTimeMillis();
+        Toast.makeText(this, "Drink Button Clicked", Toast.LENGTH_LONG).show();
+        db.insertDrink(timeStamp);
+        Toast.makeText(this, "# of Drinks = " + db.countDrinks(), Toast.LENGTH_LONG).show();
+        tvDrinkCount.setText("" + db.countDrinks());
     }
 
     public void onClickResetButton(View view){
         Toast.makeText(this, "Reset Button Clicked", Toast.LENGTH_LONG).show();
+        db.clearDrinks();
+        tvDrinkCount.setText("" + db.countDrinks());
+
     }
 }

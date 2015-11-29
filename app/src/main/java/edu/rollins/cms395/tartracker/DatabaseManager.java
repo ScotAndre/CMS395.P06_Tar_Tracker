@@ -58,17 +58,22 @@ public class DatabaseManager extends SQLiteOpenHelper {
                 + ADDRESS + " text"
                 + ")";
 
-        String sqlCreateDrink = "create table " + DRINK_TABLE + "("
+        String sqlCreateDrink = "create table "
+                + DRINK_TABLE + "("
                 + TYPE + " text, "
                 + TIMESTAMP + " integer, "
                 + LOCATION_ID + " integer, "
                 + "FOREIGN KEY (" + LOCATION_ID +") REFERENCES "
                 + LOCATION_TABLE + "(" + LOCATION_ID + ")";
 
+        String sqlCreateDrinkTable = "CREATE TABLE "
+                + DRINK_TABLE + " (ID integer primary key autoincrement, "
+                + TIMESTAMP + " INTEGER);";
+
         try {
-            db.execSQL(sqlCreateProfile);
-            db.execSQL(sqlCreateLocation);
-            db.execSQL(sqlCreateDrink);
+//            db.execSQL(sqlCreateProfile);
+//            db.execSQL(sqlCreateLocation);
+            db.execSQL(sqlCreateDrinkTable);
         }catch ( SQLException se ) {
             Toast.makeText(mContext, se.getMessage(), Toast.LENGTH_LONG).show( );
         }
@@ -143,14 +148,14 @@ public class DatabaseManager extends SQLiteOpenHelper {
         }
     }
 
-    public void insertDrink(String type, int time, int locationID){
+    public void insertDrink(long time){
 
         try {
             SQLiteDatabase db = this.getWritableDatabase();
             ContentValues values = new ContentValues();
-            values.put(TYPE, type);
+//            values.put(TYPE, type);
             values.put(TIMESTAMP, time);
-            values.put(LOCATION_ID, locationID);
+//            values.put(LOCATION_ID, locationID);
             long newId = db.insert(DRINK_TABLE, null, values);
 
             if ( newId == - 1 ) {
@@ -184,8 +189,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
             SQLiteDatabase db = this.getReadableDatabase();
             String countQuery = "SELECT * FROM " + DRINK_TABLE;
             Cursor cursor = db.rawQuery(countQuery, null);
-            cursor.close();
             numDrinks = cursor.getCount();
+            cursor.close();
             db.close();
         }
         catch (SQLException se) {
@@ -199,7 +204,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         try{
             SQLiteDatabase db = this.getWritableDatabase();
             String deleteQuery = "DELETE FROM " + DRINK_TABLE;
-            db.rawQuery(deleteQuery, null);
+            db.execSQL(deleteQuery);
             db.close();
         }
         catch (SQLException se) {
