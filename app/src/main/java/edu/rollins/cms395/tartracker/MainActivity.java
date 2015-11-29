@@ -20,14 +20,6 @@ public class MainActivity extends AppCompatActivity {
     private BacCalculator bac;
     TextView tvDrinkCount;
 
-    //TODO: add button listeners to GameActivity
-    //TODO: finish GameActivity
-    //TODO: finish BAC Calculator
-
-    // Patrick:
-    //TODO: work on sound effects
-    //TODO: auto refresh mainActivity
-
     private SoundPool soundPool;
     private int soundBeerPour;
     private DatabaseManager db;
@@ -83,14 +75,14 @@ public class MainActivity extends AppCompatActivity {
     public void onClickAddDrink(View view){
         Toast.makeText(this, "Drink Button Clicked", Toast.LENGTH_LONG).show();
         bac.addDrink();
-        Toast.makeText(this, "# of Drinks = " + bac.getmDrinkCount(), Toast.LENGTH_LONG).show();
-        tvDrinkCount.setText("" + bac.getmDrinkCount());
+        Toast.makeText(this, "# of Drinks = " + bac.getDrinkCount(), Toast.LENGTH_LONG).show();
+        tvDrinkCount.setText("" + bac.getDrinkCount());
 
         soundPool.play(soundBeerPour, 1, 1, 1, 0, 1.0f);
 
         TextView current_state = ( TextView )findViewById( R.id.current_state );
 
-        if ( bac.getmDrinkCount() != 0 ) {
+        if ( bac.getDrinkCount() != 0 ) {
 
             if ( bac.getBac() < .02 ){
                 performAnimation(R.anim.spin);
@@ -114,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
     public void onClickResetButton(View view){
         Toast.makeText(this, "Reset Button Clicked", Toast.LENGTH_LONG).show();
         bac.resetDrinkCounter();
-        tvDrinkCount.setText("" + bac.getmDrinkCount());
+        tvDrinkCount.setText("" + bac.getDrinkCount());
 
     }
 

@@ -35,7 +35,7 @@ public class BacCalculator {
         db = new DatabaseManager(mContext);
     }
 
-    public int getmDrinkCount(){
+    public int getDrinkCount(){
         return db.countDrinks();
     }
 
@@ -46,5 +46,10 @@ public class BacCalculator {
 
     public void resetDrinkCounter(){
         db.clearDrinks();
+    }
+
+    public double getBac(){
+        double bac = 0.00;
+        return bac;
     }
 }

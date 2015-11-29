@@ -85,7 +85,7 @@
                 android:id="@+id/button_add_drink"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/beer_glass_white"
+                android:src="@drawable/beer_glass_color"
                 android:layout_weight=".35"
                 android:scaleType="fitXY"
                 android:onClick="onClickAddDrink"
