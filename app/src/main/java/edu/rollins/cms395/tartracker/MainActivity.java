@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private SharedPreferences mPrefs;
+    private SharedPreferences.OnSharedPreferenceChangeListener mPrefsListener;
     private BacCalculator bac;
     private TextView tvDrinkCount;
     private TextView tvBacLevel;
@@ -34,14 +35,16 @@ public class MainActivity extends AppCompatActivity {
 
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         setPreferences();
-        bac = new BacCalculator(this);
 
+        // instantiate the BacCalculator and DatabaseManager
+        bac = new BacCalculator(this);
+        db = new DatabaseManager( this );
+
+        // instantiate the two TextViews
         tvDrinkCount = (TextView) findViewById(R.id.drink_count);
         tvBacLevel = (TextView) findViewById(R.id.bac_value);
 
         configSounds();
-
-        db = new DatabaseManager( this );
     }
 
     @Override
@@ -64,11 +67,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void setPreferences(){
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-
     }
 
     public void loadGame(View view){
@@ -141,5 +139,10 @@ public class MainActivity extends AppCompatActivity {
         public void onAnimationEnd( Animation animation ) { }
 
         public void onAnimationRepeat( Animation animation ) { }
+    }
+
+    // *********************** Preferences **************************
+    public void setPreferences(){
+
     }
 }
