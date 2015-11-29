@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         setPreferences();
         bac = new BacCalculator(this);
 

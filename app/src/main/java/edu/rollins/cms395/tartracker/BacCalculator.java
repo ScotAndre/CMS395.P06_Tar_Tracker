@@ -19,10 +19,16 @@ public class BacCalculator {
     private static final double MALE_DIST_RATE = 0.73;
     private static final double FEMALE_DIST_RATE = 0.66;
     private static final double BAC_DISSIPATION_RATE = 0.00125;
-    private Context mContext;
-    private DatabaseManager db;
 
+    private DatabaseManager db;
     private int mDrinkCount = 0;
+    private Context mContext;
+
+    // Default Values:
+    public static final double BAC_PER_SE_LIMIT_DEFAULT = 0.08;
+    public static final double BAC_UNDERAGE_LIMIT_DEFAULT = 0.02;
+    public static final double BAC_ENHANCED_LIMIT_DEFAULT = 0.15;
+    public static final int LEGAL_AGE_DEFAULT = 21;
 
     public BacCalculator(Context context){
         mContext = context;

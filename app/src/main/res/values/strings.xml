@@ -22,19 +22,22 @@
     <string name="title_activity_settings">Preferences</string>
     <string name="underage_title">Underage BAC Limit</string>
     <string name="underage_bac_summary">Underage BAC Limit</string>
+    <string name="underage_bac_default_value">0.02%</string>
     <string name="per_se_title">\"Per Se\" BAC Limit</string>
     <string name="per_se_summary">Normal BAC Limit</string>
+    <string name="per_se_bac_default_value">0.08%</string>
     <string name="enhanced_title">Enhanced BAC Limit</string>
     <string name="enhanced_summary">Enhanced (Aggravated) BAC Limit</string>
+    <string name="enhanced_bac_default_value">0.15%</string>
     <string name="drinking_age_title">Drinking Age</string>
     <string name="drinking_age_summary">Legal Drinking Age</string>
-    <string name="title_activity_edit_preferences">EditPreferences</string>
-    <string name="title_activity_number_game">NumberGameActivity</string>
+    <string name="drinking_age_default_value">21</string>
+    <string name="title_activity_edit_preferences">Edit Preferences</string>
 
     <!-- Number Game Activity -->
     <string name="number_missed_label">Number Missed:</string>
     <string name="number_missed_value_default">0</string>
-    <string name="title_activity_game">GameActivity</string>
+    <string name="title_activity_game">Tar Tracker - Number Game</string>
 
     <!-- DatabaseManager -->
     <string name="insert_error">Insert Error</string>
