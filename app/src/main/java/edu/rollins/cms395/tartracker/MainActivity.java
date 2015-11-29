@@ -18,7 +18,9 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     private SharedPreferences mPrefs;
     private BacCalculator bac;
-    TextView tvDrinkCount;
+    private TextView tvDrinkCount;
+    private TextView tvBacLevel;
+
 
     private SoundPool soundPool;
     private int soundBeerPour;
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         bac = new BacCalculator(this);
 
         tvDrinkCount = (TextView) findViewById(R.id.drink_count);
+        tvBacLevel = (TextView) findViewById(R.id.bac_value);
 
         configSounds();
 
@@ -77,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
         bac.addDrink();
         Toast.makeText(this, "# of Drinks = " + bac.getDrinkCount(), Toast.LENGTH_LONG).show();
         tvDrinkCount.setText("" + bac.getDrinkCount());
+        tvBacLevel.setText("" + bac.getBac());
 
         soundPool.play(soundBeerPour, 1, 1, 1, 0, 1.0f);
 
@@ -88,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
                 performAnimation(R.anim.spin);
                 current_state.setText( "Suprisingly Sober");
             }
-            else if ( ( bac.getBac() >= .02 ) && ( db.getAge() < 21 ) ){
+            else if ( ( bac.getBac() >= .02 ) /* && ( db.getAge() < 21 ) */){
                 performAnimation(R.anim.combo);
                 current_state.setText( "YOUR DRUNK KID!");
             }
@@ -107,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, "Reset Button Clicked", Toast.LENGTH_LONG).show();
         bac.resetDrinkCounter();
         tvDrinkCount.setText("" + bac.getDrinkCount());
+        tvBacLevel.setText("" + bac.getBac());
 
     }
 

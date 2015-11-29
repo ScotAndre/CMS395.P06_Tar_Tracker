@@ -3,6 +3,7 @@ package edu.rollins.cms395.tartracker;
 import android.content.Context;
 import android.util.Log;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -84,6 +85,9 @@ public class BacCalculator {
         }
         Log.d("BAC Calc ", "" + bac);
 
-        return bac;
+        DecimalFormat df = new DecimalFormat("0.000");
+        String bacString = df.format(bac);
+
+        return Double.parseDouble(bacString);
     }
 }
