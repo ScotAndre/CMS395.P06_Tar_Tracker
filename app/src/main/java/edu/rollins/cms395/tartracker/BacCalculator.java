@@ -81,7 +81,9 @@ public class BacCalculator {
         // BAC = (A * 5.14 / W * r) - 0.015 * H
         for(int i = 0; i < drinks.size(); i++){
             long drink = drinks.get(i);
-            bac += (1.5 * 5.14 / weight * distRate) - 0.015 * ((timeStamp - drink) / HOUR);
+            if(timeStamp - drink <= 6600000) {
+                bac += (1.5 * 5.14 / weight * distRate) - 0.015 * ((timeStamp - drink) / HOUR);
+            }
         }
         Log.d("BAC Calc ", "" + bac);
 
