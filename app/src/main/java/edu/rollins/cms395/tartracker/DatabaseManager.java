@@ -9,6 +9,8 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 /**
  * Created by kshiver on 11/26/2015.
  */
@@ -58,13 +60,6 @@ public class DatabaseManager extends SQLiteOpenHelper {
                 + ADDRESS + " text"
                 + ")";
 
-        String sqlCreateDrink = "create table "
-                + DRINK_TABLE + "("
-                + TYPE + " text, "
-                + TIMESTAMP + " integer, "
-                + LOCATION_ID + " integer, "
-                + "FOREIGN KEY (" + LOCATION_ID +") REFERENCES "
-                + LOCATION_TABLE + "(" + LOCATION_ID + ")";
 
         String sqlCreateDrinkTable = "CREATE TABLE "
                 + DRINK_TABLE + " (ID integer primary key autoincrement, "
@@ -211,4 +206,30 @@ public class DatabaseManager extends SQLiteOpenHelper {
             Toast.makeText(mContext, se.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
+
+    public ArrayList getDrinks (){
+        ArrayList<Long> drinks = new ArrayList<Long>();
+
+        try{
+            SQLiteDatabase db = this.getReadableDatabase();
+            String sqlQuery = "SELECT " + TIMESTAMP + " FROM " + DRINK_TABLE;
+            Cursor cursor = db.rawQuery(sqlQuery, null);
+            cursor.moveToFirst();
+
+            while (!cursor.isAfterLast()){
+                long timeStamp = cursor.getLong(0);
+                drinks.add(timeStamp);
+                cursor.moveToNext();
+            }
+            cursor.close( );
+            db.close();
+        }
+        catch(SQLiteException sle){
+            Toast.makeText(mContext, sle.toString(), Toast.LENGTH_LONG).show();
+        }
+
+        return drinks;
+    }
+
+
 }
