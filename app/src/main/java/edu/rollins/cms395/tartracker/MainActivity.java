@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            startActivity(new Intent(this, SettingsActivity.class));
             return true;
         }
 
@@ -144,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
     // *********************** Preferences **************************
     public void setPreferences(){
         try{
+//            bac.setUnderageBacLimit(Double.parseDouble(mPrefs.getString("underage_bac_limit", bac.BAC_UNDERAGE_LIMIT_DEFAULT)));
 
         } catch (NumberFormatException nfe){
             // reset the default in case user entered a number that was too large
