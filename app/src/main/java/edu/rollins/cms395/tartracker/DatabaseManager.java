@@ -87,7 +87,9 @@ public class DatabaseManager extends SQLiteOpenHelper {
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL("DROP TABLE IF EXISTS " + PROFILE_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + DRINK_TABLE);
+        this.onCreate(db);
     }
 
     public void insertProfile(String name, int age, int weight, String gender){
@@ -143,11 +145,11 @@ public class DatabaseManager extends SQLiteOpenHelper {
 //            values.put(LOCATION_ID, locationID);
             long newId = db.insert(DRINK_TABLE, null, values);
 
-            if ( newId == - 1 ) {
-                Toast.makeText(mContext, R.string.insert_error, Toast.LENGTH_LONG ).show( );
-            } else {
-                Toast.makeText(mContext, R.string.insert_ok, Toast.LENGTH_LONG ).show( );
-            }
+//            if ( newId == - 1 ) {
+//                Toast.makeText(mContext, R.string.insert_error, Toast.LENGTH_LONG ).show( );
+//            } else {
+//                Toast.makeText(mContext, R.string.insert_ok, Toast.LENGTH_LONG ).show( );
+//            }
             db.close();
         } catch ( SQLiteException se ) {
             Toast.makeText(mContext, se.getMessage( ), Toast.LENGTH_LONG ).show( );
@@ -167,7 +169,6 @@ public class DatabaseManager extends SQLiteOpenHelper {
     }
 
     public int countDrinks (){
-
         int numDrinks = 0;
 
         try{
@@ -228,6 +229,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
             String sqlQuery = "SELECT " + NAME + " FROM " + PROFILE_TABLE;
             Cursor cursor = db.rawQuery(sqlQuery, null);
             name = cursor.getString(0);
+            cursor.close();
             db.close();
         }
         catch(SQLiteException sle){
@@ -244,6 +246,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
             String sqlQuery = "SELECT " + AGE + " FROM " + PROFILE_TABLE;
             Cursor cursor = db.rawQuery(sqlQuery, null);
             age = cursor.getInt(0);
+            cursor.close();
             db.close();
         }
         catch(SQLiteException sle){
@@ -259,6 +262,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
             String sqlQuery = "SELECT " + WEIGHT + " FROM " + PROFILE_TABLE;
             Cursor cursor = db.rawQuery(sqlQuery, null);
             weight = cursor.getInt(0);
+            cursor.close();
             db.close();
         }
         catch(SQLiteException sle){
@@ -274,6 +278,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
             String sqlQuery = "SELECT " + GENDER + " FROM " + PROFILE_TABLE;
             Cursor cursor = db.rawQuery(sqlQuery, null);
             gender = cursor.getString(0);
+            cursor.close();
             db.close();
         }
         catch(SQLiteException sle){

@@ -102,6 +102,8 @@ public class BacCalculator {
 
     public int getSobrietyLevel(){
         int sobrietyLevel = 0;
+        int age = db.getAge();
+        double bac = getBac();
 
         // 0 Suprisingly Sober
         // 1 Sober

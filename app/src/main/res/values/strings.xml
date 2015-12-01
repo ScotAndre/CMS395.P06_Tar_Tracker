@@ -17,6 +17,12 @@
     <string name="bac_display_value_default">.00</string>
     <string name="drink_count_label">Drink Count</string>
     <string name="drink_count_value_default">0</string>
+    <string name="sobriety_suprisingly_sober">Suprisingly Sober!</string>
+    <string name="sobriety_sober">Sober</string>
+    <string name="sobriety_tipsy">Tipsy</string>
+    <string name="sobriety_drunk">Drunk</string>
+    <string name="sobriety_danger_drunk">Dangerously Drunk</string>
+    <string name="sobriety_leathaly_drunk">Leathly Drunk!\\nGet Help!!!</string>
 
     <!-- Settings (Preferences) Activity -->
     <string name="title_activity_settings">Preferences</string>

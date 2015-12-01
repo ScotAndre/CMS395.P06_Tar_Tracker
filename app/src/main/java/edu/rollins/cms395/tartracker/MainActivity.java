@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     private SoundPool soundPool;
     private int soundBeerPour;
-    private DatabaseManager db;
+//    private DatabaseManager db;
 
 
 
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         // instantiate the BacCalculator and DatabaseManager
         bac = new BacCalculator(this);
-        db = new DatabaseManager( this );
+//        db = new DatabaseManager( this );
 
         // instantiate the two TextViews
         tvDrinkCount = (TextView) findViewById(R.id.drink_count);
@@ -90,46 +90,73 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickAddDrink(View view){
-        Toast.makeText(this, "Drink Button Clicked", Toast.LENGTH_LONG).show();
+//        Toast.makeText(this, "Drink Button Clicked", Toast.LENGTH_LONG).show();
         bac.addDrink();
-        Toast.makeText(this, "# of Drinks = " + bac.getDrinkCount(), Toast.LENGTH_LONG).show();
-        tvDrinkCount.setText("" + bac.getDrinkCount());
+        int drinkCount = bac.getDrinkCount();
+//        Toast.makeText(this, "# of Drinks = " + bac.getDrinkCount(), Toast.LENGTH_LONG).show();
+        tvDrinkCount.setText("" + drinkCount);
         tvBacLevel.setText("" + bac.getBac());
 
         soundPool.play(soundBeerPour, 1, 1, 1, 0, 1.0f);
 
         TextView current_state = ( TextView )findViewById( R.id.current_state );
 
-        //TODO: Fix the hard-coded references and strings
-        //TODO: Fix logic >= (need to add && < )
-        //TODO: Do we want to move this to the BAC Calc?
-        if ( bac.getDrinkCount() != 0 ) {
-
-            if ( bac.getBac() < .02 ){
+        if (drinkCount != 0 ) {
+            if(bac.getBac() == 0.0 && bac.getDrinkCount() == 0){
                 performAnimation(R.anim.spin);
-                current_state.setText( "Suprisingly Sober");
-            }
-            else if ( ( bac.getBac() >= .04 ) /* && ( db.getAge() < 21 ) */){
-                performAnimation(R.anim.combo);
-                current_state.setText( "Tipsy!");
-            }
-            else if ( bac.getBac() >= .08 ){
+                current_state.setText(R.string.sobriety_suprisingly_sober);
+            } else if(bac.getBac() < bac.BAC_PER_SE_LIMIT_DEFAULT){
                 performAnimation(R.anim.spin);
-                current_state.setText( "Drunk");
-            }
-            else if ( bac.getBac() >= .15 ){
+                current_state.setText(R.string.sobriety_tipsy);
+            } else if(bac.getBac() >= bac.BAC_PER_SE_LIMIT_DEFAULT && bac.getBac() < bac.BAC_ENHANCED_LIMIT_DEFAULT){
+                performAnimation(R.anim.spin);
+                current_state.setText(R.string.sobriety_drunk);
+            } else if(bac.getBac() >= bac.BAC_ENHANCED_LIMIT_DEFAULT && bac.getBac() < bac.BAC_ENHANCED_LIMIT_DEFAULT * 2){
                 performAnimation(R.anim.combo);
-                current_state.setText( "YOUR BEYOND DRUNK!");
-            } else if(bac.getBac() >= .30){
+                current_state.setText(R.string.sobriety_danger_drunk);
+            } else if(bac.getBac() >= bac.BAC_ENHANCED_LIMIT_DEFAULT * 2){
                 performAnimation(R.anim.combo);
-                current_state.setText("You Should Be Dead");
+                current_state.setText(R.string.sobriety_leathaly_drunk);
             }
+//            switch (bac.getSobrietyLevel()){
+//                case 0:
+//                    performAnimation(R.anim.spin);
+//                    current_state.setText(R.string.sobriety_suprisingly_sober);
+//                    break;
+//                case 1:
+//                    // sober
+//                    performAnimation(R.anim.spin);
+//                    current_state.setText(R.string.sobriety_sober);
+//                    break;
+//                case 2:
+//                    // tipsy
+//                    performAnimation(R.anim.combo);
+//                    current_state.setText(R.string.sobriety_tipsy);
+//                    break;
+//                case 3:
+//                    // drunk
+//                    performAnimation(R.anim.spin);
+//                    current_state.setText(R.string.sobriety_drunk);
+//                    break;
+//                case 4:
+//                    // dangerously drunk
+//                    performAnimation(R.anim.combo);
+//                    current_state.setText(R.string.sobriety_danger_drunk);
+//                    break;
+//                case 5:
+//                    // leathly drunk
+//                    performAnimation(R.anim.combo);
+//                    current_state.setText(R.string.sobriety_leathaly_drunk);
+//                    break;
+//                case 6:
+//                    // Error
+//                    break;
+//            }
         }
     }
 
     public void onClickResetButton(View view){
-        //TODO: Fix hard coded string
-        Toast.makeText(this, "Reset Button Clicked", Toast.LENGTH_LONG).show();
+//        Toast.makeText(this, "Reset Button Clicked", Toast.LENGTH_LONG).show();
         bac.resetDrinkCounter();
         tvDrinkCount.setText("" + bac.getDrinkCount());
         tvBacLevel.setText("" + bac.getBac());
