@@ -63,12 +63,6 @@ public class DatabaseManager extends SQLiteOpenHelper {
         }catch ( SQLException se ) {
             Toast.makeText(mContext, se.getMessage(), Toast.LENGTH_LONG).show( );
         }
-
-        // load default information
-        setName("");
-        setGender("MALE");
-        setAge(18);
-        setWeight(196);
     }
 
     /**
