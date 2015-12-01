@@ -21,8 +21,8 @@
     <string name="sobriety_sober">Sober</string>
     <string name="sobriety_tipsy">Tipsy</string>
     <string name="sobriety_drunk">Drunk</string>
-    <string name="sobriety_danger_drunk">Dangerously Drunk</string>
-    <string name="sobriety_leathaly_drunk">Leathly Drunk!\\nGet Help!!!</string>
+    <string name="sobriety_danger_drunk">Really Drunk</string>
+    <string name="sobriety_leathaly_drunk">You Should Be Dead!</string>
 
     <!-- Settings (Preferences) Activity -->
     <string name="title_activity_settings">Preferences</string>

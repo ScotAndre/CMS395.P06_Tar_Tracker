@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private BacCalculator bac;
     private TextView tvDrinkCount;
     private TextView tvBacLevel;
+    private TextView tvCurrentState;
 
 
     private SoundPool soundPool;
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         // instantiate the two TextViews
         tvDrinkCount = (TextView) findViewById(R.id.drink_count);
         tvBacLevel = (TextView) findViewById(R.id.bac_value);
+        tvCurrentState = (TextView) findViewById(R.id.current_state);
 
         configSounds();
 
@@ -99,24 +101,24 @@ public class MainActivity extends AppCompatActivity {
 
         soundPool.play(soundBeerPour, 1, 1, 1, 0, 1.0f);
 
-        TextView current_state = ( TextView )findViewById( R.id.current_state );
+//        TextView current_state = ( TextView )findViewById( R.id.current_state );
 
         if (drinkCount != 0 ) {
             if(bac.getBac() == 0.0 && bac.getDrinkCount() == 0){
                 performAnimation(R.anim.spin);
-                current_state.setText(R.string.sobriety_suprisingly_sober);
-            } else if(bac.getBac() < bac.BAC_PER_SE_LIMIT_DEFAULT){
+                tvCurrentState.setText(R.string.sobriety_suprisingly_sober);
+            } else if(bac.getBac() < bac.BAC_PER_SE_LIMIT_DEFAULT && bac.getDrinkCount() > 2){
                 performAnimation(R.anim.spin);
-                current_state.setText(R.string.sobriety_tipsy);
+                tvCurrentState.setText(R.string.sobriety_tipsy);
             } else if(bac.getBac() >= bac.BAC_PER_SE_LIMIT_DEFAULT && bac.getBac() < bac.BAC_ENHANCED_LIMIT_DEFAULT){
                 performAnimation(R.anim.spin);
-                current_state.setText(R.string.sobriety_drunk);
-            } else if(bac.getBac() >= bac.BAC_ENHANCED_LIMIT_DEFAULT && bac.getBac() < bac.BAC_ENHANCED_LIMIT_DEFAULT * 2){
+                tvCurrentState.setText(R.string.sobriety_drunk);
+            } else if(bac.getBac() >= bac.BAC_ENHANCED_LIMIT_DEFAULT && bac.getBac() < bac.BAC_ENHANCED_LIMIT_DEFAULT * 3){
                 performAnimation(R.anim.combo);
-                current_state.setText(R.string.sobriety_danger_drunk);
-            } else if(bac.getBac() >= bac.BAC_ENHANCED_LIMIT_DEFAULT * 2){
+                tvCurrentState.setText(R.string.sobriety_danger_drunk);
+            } else if(bac.getBac() >= bac.BAC_ENHANCED_LIMIT_DEFAULT * 3){
                 performAnimation(R.anim.combo);
-                current_state.setText(R.string.sobriety_leathaly_drunk);
+                tvCurrentState.setText(R.string.sobriety_leathaly_drunk);
             }
 //            switch (bac.getSobrietyLevel()){
 //                case 0:
@@ -158,8 +160,9 @@ public class MainActivity extends AppCompatActivity {
     public void onClickResetButton(View view){
 //        Toast.makeText(this, "Reset Button Clicked", Toast.LENGTH_LONG).show();
         bac.resetDrinkCounter();
-        tvDrinkCount.setText("" + bac.getDrinkCount());
-        tvBacLevel.setText("" + bac.getBac());
+        tvDrinkCount.setText(Integer.toString(bac.getDrinkCount()));
+        tvBacLevel.setText(Double.toString(bac.getBac()));
+        tvCurrentState.setText(R.string.sobriety_suprisingly_sober);
     }
 
     private void configSounds( ){
@@ -219,7 +222,10 @@ public class MainActivity extends AppCompatActivity {
     // *********************** Preferences **************************
     public void setPreferences(){
         try{
-//            bac.setUnderageBacLimit(Double.parseDouble(mPrefs.getString("underage_bac_limit", bac.BAC_UNDERAGE_LIMIT_DEFAULT)));
+//            bac.setUnderageBacLimit(Double.parseDouble(mPrefs.getString("underage_bac_limit", Double.toString(bac.BAC_UNDERAGE_LIMIT_DEFAULT))));
+//            bac.setPerSeBacLimit(Double.parseDouble(mPrefs.getString("per_se_bac_limit", Double.toString(bac.BAC_PER_SE_LIMIT_DEFAULT))));
+//            bac.setEnhancedBacLimit(Double.parseDouble(mPrefs.getString("enhanced_bac_limit", Double.toString(bac.BAC_ENHANCED_LIMIT_DEFAULT))));
+//            bac.setLegalDrinkingAge(Integer.parseInt(mPrefs.getString("drinking_age", Integer.toString(bac.LEGAL_AGE_DEFAULT))));
 
         } catch (NumberFormatException nfe){
             // reset the default in case user entered a number that was too large
@@ -234,6 +240,35 @@ public class MainActivity extends AppCompatActivity {
             bac.setPerSeBacLimit(bac.BAC_PER_SE_LIMIT_DEFAULT);
             bac.setEnhancedBacLimit(bac.BAC_ENHANCED_LIMIT_DEFAULT);
             bac.setLegalDrinkingAge(bac.LEGAL_AGE_DEFAULT);
-        }
+         }
+
+//        mPrefsListener = new SharedPreferences.OnSharedPreferenceChangeListener(){
+//
+//            /**
+//             * Called when a shared preference is changed, added, or removed. This
+//             * may be called even if a preference is set to its existing value.
+//             * <p/>
+//             * <p>This callback will be run on your main thread.
+//             *
+//             * @param sharedPreferences The {@link SharedPreferences} that received
+//             *                          the change.
+//             * @param key               The key of the preference that was changed, added, or
+//             */
+//            @Override
+//            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+//                if(key.equals("underage_bac_limit")){
+//                    bac.setUnderageBacLimit(Double.parseDouble(mPrefs.getString("underage_bac_limit", Double.toString(bac.BAC_UNDERAGE_LIMIT_DEFAULT))));
+//                }
+//                if(key.equals("per_se_bac_limit")){
+//                    bac.setPerSeBacLimit(Double.parseDouble(mPrefs.getString("per_se_bac_limit", Double.toString(bac.BAC_PER_SE_LIMIT_DEFAULT))));
+//                }
+//                if(key.equals("enhanced_bac_limit")){
+//                    bac.setEnhancedBacLimit(Double.parseDouble(mPrefs.getString("enhanced_bac_limit", Double.toString(bac.BAC_ENHANCED_LIMIT_DEFAULT))));
+//                }
+//                if(key.equals("drinking_age")){
+//                    bac.setLegalDrinkingAge(Integer.parseInt(mPrefs.getString("drinking_age", Integer.toString(bac.LEGAL_AGE_DEFAULT))));
+//                }
+//            }
+//        };
     }
 }
