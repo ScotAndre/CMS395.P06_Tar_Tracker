@@ -49,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
 
         configSounds();
 
+        UpdateBac ubac = new UpdateBac();
+
         //TODO: If userName in database is empty, call PersonalSettingsActivity
 //        if(db.getName() == null){
 //            setPersonalSettings(null);
@@ -270,5 +272,9 @@ public class MainActivity extends AppCompatActivity {
 //                }
 //            }
 //        };
+    }
+
+    public void launchUpdateBac(View view){
+        startActivity(new Intent(getApplicationContext(), UpdateBac.class));
     }
 }

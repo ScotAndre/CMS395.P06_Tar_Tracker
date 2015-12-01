@@ -28,6 +28,10 @@
             android:name=".PersonalSettingsActivity"
             android:label="@string/title_activity_personal_settings" >
         </activity>
+        <activity
+            android:name=".UpdateBac"
+            android:label="@string/title_activity_update_bac" >
+        </activity>
     </application>
 
 </manifest>
