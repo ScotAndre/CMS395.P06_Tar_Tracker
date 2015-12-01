@@ -100,6 +100,35 @@ public class BacCalculator {
         return Double.parseDouble(bacString);
     }
 
+    public int getSobrietyLevel(){
+        int sobrietyLevel = 0;
+
+        // 0 Suprisingly Sober
+        // 1 Sober
+        // 2 Tipsy
+        // 3 Drunk
+        // 4 Dangerously Drunk
+        // 5 Leathly Drunk
+        // 6 error
+
+        if ( getBac() == 0.0 && getDrinkCount() == 0 ){
+            return 0;
+        } else if ( getBac() >= mUnderageBacLimit && db.getAge() < mLegalDrinkingAge){
+            // underage drunk
+            return 3;
+        } else if (db.getAge() >= mLegalDrinkingAge && getDrinkCount() > 0 && getBac() < mPerSeBacLimit){
+            return  2;
+        } else if (db.getAge() >= mLegalDrinkingAge && getDrinkCount() > 0 && getBac() >= mPerSeBacLimit){
+            return 3;
+        } else if(db.getAge() >= mLegalDrinkingAge && getDrinkCount() > 0 && getBac() >= mEnhancedBacLimit){
+            return 4;
+        } else if(db.getAge() >= mLegalDrinkingAge && getDrinkCount() > 0 && getBac() >= 3.0){
+            return 5;
+        } else {
+            return 6;
+        }
+    }
+
     public void setWeight(int weight){
         mWeight = weight;
     }
