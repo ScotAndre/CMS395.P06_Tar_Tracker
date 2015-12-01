@@ -48,9 +48,9 @@ public class MainActivity extends AppCompatActivity {
         configSounds();
 
         //TODO: If userName in database is empty, call PersonalSettingsActivity
-        if(db.getName() == null){
-            setPersonalSettings(null);
-        }
+//        if(db.getName() == null){
+//            setPersonalSettings(null);
+//        }
 
     }
 
