@@ -74,6 +74,14 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(getApplicationContext(), GameActivity.class));
     }
 
+    public void refreshBac(View view){
+
+    }
+
+    public void setPersonalSettings(View view){
+        startActivity(new Intent(getApplicationContext(), PersonalSettingsActivity.class));
+    }
+
     public void onClickAddDrink(View view){
         Toast.makeText(this, "Drink Button Clicked", Toast.LENGTH_LONG).show();
         bac.addDrink();
@@ -85,33 +93,39 @@ public class MainActivity extends AppCompatActivity {
 
         TextView current_state = ( TextView )findViewById( R.id.current_state );
 
+        //TODO: Fix the hard-coded references and strings
+        //TODO: Fix logic >= (need to add && < )
+        //TODO: Do we want to move this to the BAC Calc?
         if ( bac.getDrinkCount() != 0 ) {
 
             if ( bac.getBac() < .02 ){
                 performAnimation(R.anim.spin);
                 current_state.setText( "Suprisingly Sober");
             }
-            else if ( ( bac.getBac() >= .02 ) /* && ( db.getAge() < 21 ) */){
+            else if ( ( bac.getBac() >= .04 ) /* && ( db.getAge() < 21 ) */){
                 performAnimation(R.anim.combo);
-                current_state.setText( "YOUR DRUNK KID!");
+                current_state.setText( "Tipsy!");
             }
             else if ( bac.getBac() >= .08 ){
                 performAnimation(R.anim.spin);
-                current_state.setText( "Your kinda drunk");
+                current_state.setText( "Drunk");
             }
             else if ( bac.getBac() >= .15 ){
                 performAnimation(R.anim.combo);
                 current_state.setText( "YOUR BEYOND DRUNK!");
+            } else if(bac.getBac() >= .30){
+                performAnimation(R.anim.combo);
+                current_state.setText("You Should Be Dead");
             }
         }
     }
 
     public void onClickResetButton(View view){
+        //TODO: Fix hard coded string
         Toast.makeText(this, "Reset Button Clicked", Toast.LENGTH_LONG).show();
         bac.resetDrinkCounter();
         tvDrinkCount.setText("" + bac.getDrinkCount());
         tvBacLevel.setText("" + bac.getBac());
-
     }
 
     private void configSounds( ){
@@ -133,14 +147,40 @@ public class MainActivity extends AppCompatActivity {
         current_state.startAnimation(an);
     }
 
-    class MyAnimationListener implements Animation.AnimationListener {
+    class  MyAnimationListener implements Animation.AnimationListener{
 
-        public void onAnimationStart( Animation animation ) { }
+        /**
+         * <p>Notifies the start of the animation.</p>
+         *
+         * @param animation The started animation.
+         */
+        @Override
+        public void onAnimationStart(Animation animation) {
 
-        public void onAnimationEnd( Animation animation ) { }
+        }
 
-        public void onAnimationRepeat( Animation animation ) { }
-    }
+        /**
+         * <p>Notifies the end of the animation. This callback is not invoked
+         * for animations with repeat count set to INFINITE.</p>
+         *
+         * @param animation The animation which reached its end.
+         */
+        @Override
+        public void onAnimationEnd(Animation animation) {
+
+        }
+
+        /**
+         * <p>Notifies the repetition of the animation.</p>
+         *
+         * @param animation The animation which was repeated.
+         */
+        @Override
+        public void onAnimationRepeat(Animation animation) {
+
+        }
+    }// end MyAnimationListener class
+
 
     // *********************** Preferences **************************
     public void setPreferences(){
