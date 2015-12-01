@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseManager db;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +46,12 @@ public class MainActivity extends AppCompatActivity {
         tvBacLevel = (TextView) findViewById(R.id.bac_value);
 
         configSounds();
+
+        //TODO: If userName in database is empty, call PersonalSettingsActivity
+        if(db.getName() == null){
+            setPersonalSettings(null);
+        }
+
     }
 
     @Override

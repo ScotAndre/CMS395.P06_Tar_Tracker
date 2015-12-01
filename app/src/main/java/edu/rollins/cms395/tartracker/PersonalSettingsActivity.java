@@ -1,16 +1,26 @@
 package edu.rollins.cms395.tartracker;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ToggleButton;
 
 public class PersonalSettingsActivity extends AppCompatActivity {
+    private EditText etUserName;
+    private EditText etUserAge;
+    private EditText etUserWeight;
+    private ToggleButton tbUserGender;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_settings);
+
+        //TODO: Get values from database and insert them into appropriate field
     }
 
     @Override
@@ -29,9 +39,28 @@ public class PersonalSettingsActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            startActivity(new Intent(this, SettingsActivity.class));
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void saveButtonClicked(View view){
+        etUserName = (EditText) findViewById(R.id.user_name);
+        etUserAge = (EditText) findViewById(R.id.use_age);
+        etUserWeight = (EditText) findViewById(R.id.user_weight);
+        tbUserGender = (ToggleButton) findViewById(R.id.toggle_gender);
+        String userName = etUserName.getText().toString().trim();
+        int userAge = Integer.parseInt(etUserAge.getText().toString().trim());
+        int userWeight = Integer.parseInt(etUserWeight.getText().toString().trim());
+
+        if(userName == null){
+
+        }
+    }
+
+    public void cancelButtonClicked(View view){
+        startActivity(new Intent(this, MainActivity.class));
     }
 }

@@ -9,9 +9,133 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="edu.rollins.cms395.tartracker.PersonalSettingsActivity">
 
-    <TextView
-        android:text="@string/hello_world"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/user_name_label"
+                android:text="@string/user_name_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:textSize="20sp"
+                android:layout_weight=".75"
+                />
+            <EditText
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="200sp"
+                android:hint="@string/user_name_hint"
+                android:layout_weight=".5"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="30dp">
+
+            <TextView
+                android:id="@+id/user_genger_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/user_gender_label"
+                android:paddingTop="10dp"
+                android:textSize="20sp"
+                android:layout_weight=".75"
+                />
+            <ToggleButton
+                android:id="@+id/toggle_gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOn="@string/toggle_male"
+                android:textOff="@string/toggle_female"
+                android:checked="true"
+                android:layout_weight=".5
+                "
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="30dp">
+
+            <TextView
+                android:id="@+id/user_age_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/user_age_label"
+                android:textSize="20sp"
+                android:padding="10dp"
+                android:layout_weight=".75"
+                />
+            <EditText
+                android:id="@+id/use_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:minWidth="70dp"
+                android:layout_weight=".1"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="30dp">
+
+            <TextView
+                android:id="@+id/user_weight_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/user_weight_label"
+                android:textSize="20sp"
+                android:paddingTop="10dp"
+                android:layout_weight=".75"
+                />
+            <EditText
+                android:id="@+id/user_weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:minWidth="70dp"
+                android:layout_weight=".1"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="30dp">
+
+            <Button
+                android:id="@+id/button_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_save_label"
+                android:layout_weight="1"
+                android:onClick="saveButtonClicked"
+                />
+            <Button
+                android:id="@+id/button_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_cancel_label"
+                android:layout_weight="1"
+                android:onClick="cancelButtonClicked"
+                />
+        </LinearLayout>
+
+
+    </LinearLayout>
 
 </RelativeLayout>

@@ -53,28 +53,22 @@ public class DatabaseManager extends SQLiteOpenHelper {
                 + GENDER + " text"
                 + ")";
 
-        String sqlCreateLocation = "create table "
-                + LOCATION_TABLE + " ("
-                + LOCATION_ID + " integer primary key autoincrement,"
-                + NAME + " text, "
-                + LATITUDE + " integer, "
-                + LONGITUDE + " integer, "
-                + ADDRESS + " text"
-                + ")";
-
-
         String sqlCreateDrinkTable = "CREATE TABLE "
                 + DRINK_TABLE + " (ID integer primary key autoincrement, "
                 + TIMESTAMP + " INTEGER);";
 
         try {
             db.execSQL(sqlCreateProfile);
-//            db.execSQL(sqlCreateLocation);
             db.execSQL(sqlCreateDrinkTable);
         }catch ( SQLException se ) {
             Toast.makeText(mContext, se.getMessage(), Toast.LENGTH_LONG).show( );
         }
 
+        // load default information
+        setName("");
+        setGender("MALE");
+        setAge(18);
+        setWeight(196);
     }
 
     /**
