@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     private SoundPool soundPool;
     private int soundBeerPour;
-    private DatabaseManager db;
+//    private DatabaseManager db;
 
 
 
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         // instantiate the BacCalculator and DatabaseManager
         bac = new BacCalculator(this);
-        db = new DatabaseManager( this );
+//        db = new DatabaseManager( this );
 
         // instantiate the two TextViews
         tvDrinkCount = (TextView) findViewById(R.id.drink_count);

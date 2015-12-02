@@ -63,6 +63,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         }catch ( SQLException se ) {
             Toast.makeText(mContext, se.getMessage(), Toast.LENGTH_LONG).show( );
         }
+        
     }
 
     /**
