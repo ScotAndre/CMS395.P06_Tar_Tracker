@@ -128,21 +128,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void updateDisplay(View view){
+        tvDrinkCount.setText(Integer.toString(bac.getDrinkCount()));
+        tvBacLevel.setText(Double.toString(bac.getBac()));
+
         if (bac.getDrinkCount() != 0 ) {
             if(bac.getBac() == 0.0 && bac.getDrinkCount() == 0){
-                performAnimation(R.anim.spin);
+//                performAnimation(R.anim.spin);
                 tvCurrentState.setText(R.string.sobriety_suprisingly_sober);
             } else if(bac.getBac() < bac.BAC_PER_SE_LIMIT_DEFAULT && bac.getDrinkCount() > 2){
-                performAnimation(R.anim.spin);
+//                performAnimation(R.anim.spin);
                 tvCurrentState.setText(R.string.sobriety_tipsy);
             } else if(bac.getBac() >= bac.BAC_PER_SE_LIMIT_DEFAULT && bac.getBac() < bac.BAC_ENHANCED_LIMIT_DEFAULT){
-                performAnimation(R.anim.spin);
+//                performAnimation(R.anim.spin);
                 tvCurrentState.setText(R.string.sobriety_drunk);
             } else if(bac.getBac() >= bac.BAC_ENHANCED_LIMIT_DEFAULT && bac.getBac() < bac.BAC_ENHANCED_LIMIT_DEFAULT * 3){
-                performAnimation(R.anim.combo);
+//                performAnimation(R.anim.combo);
                 tvCurrentState.setText(R.string.sobriety_danger_drunk);
             } else if(bac.getBac() >= bac.BAC_ENHANCED_LIMIT_DEFAULT * 3){
-                performAnimation(R.anim.combo);
+//                performAnimation(R.anim.combo);
                 tvCurrentState.setText(R.string.sobriety_leathaly_drunk);
             }
         }
