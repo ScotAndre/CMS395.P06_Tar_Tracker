@@ -89,14 +89,6 @@ public class BacCalculator {
         ArrayList<Long> drinks = new ArrayList<Long>();
         drinks = db.getDrinks();
 
-        if(isMale){
-            mWeight = AVERAGE_MALE_WEIGHT;
-            mDistRate = MALE_DIST_RATE;
-        } else {
-            mWeight = AVERAGE_FEMALE_WEIGHT;
-            mDistRate = FEMALE_DIST_RATE;
-        }
-
         // BAC = (A * 5.14 / W * r) - 0.015 * H
         for(int i = 0; i < drinks.size(); i++){
             long drink = drinks.get(i);
@@ -128,8 +120,10 @@ public class BacCalculator {
             if(!db.getGender().equals("")){
                 if(db.getGender().equals("FEMALE")){
                     isMale = false;
+                    mDistRate = MALE_DIST_RATE;
                 } else {
                     isMale = true;
+                    mDistRate = FEMALE_DIST_RATE;
                 }
             }
         }
