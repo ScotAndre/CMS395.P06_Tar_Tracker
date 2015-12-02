@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 public class PersonalSettingsActivity extends AppCompatActivity {
@@ -63,13 +64,25 @@ public class PersonalSettingsActivity extends AppCompatActivity {
         sbUserGender.append(tbUserGender.getText());
         String userGender = sbUserGender.toString();
 
-        //TODO: Finish saveButtonClicked
+        if(userName.equals("")){
+            Toast.makeText(this, R.string.name_error, Toast.LENGTH_SHORT).show();
+        }
+        else if(Integer.toString(userAge).equals("")){
+            Toast.makeText(this, R.string.age_error, Toast.LENGTH_SHORT).show();
+        }
+        else if(Integer.toString(userWeight).equals("")){
+            Toast.makeText(this, R.string.weight_error, Toast.LENGTH_SHORT).show();
+        }
+        else {
+            db.insertProfile(userName, userAge, userWeight, userGender);
+        }
+
 //        db.setName(userName);
 //        db.setAge(userAge);
 //        db.setWeight(userWeight);
 //        db.setGender(userGender);
 
-        db.insertProfile(userName, userAge, userWeight, userGender);
+//        db.insertProfile(userName, userAge, userWeight, userGender);
         startActivity(new Intent(this, MainActivity.class));
     }
 

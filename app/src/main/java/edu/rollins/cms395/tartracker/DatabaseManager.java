@@ -291,7 +291,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         try{
             SQLiteDatabase db = this.getWritableDatabase();
             ContentValues values = new ContentValues();
-            values.put(NAME,name);
+            values.put(NAME, name);
 
             if(getName() == null){
                 long newId = db.insert(PROFILE_TABLE, null, values);
@@ -309,8 +309,14 @@ public class DatabaseManager extends SQLiteOpenHelper {
         try{
             SQLiteDatabase db = this.getWritableDatabase();
             ContentValues values = new ContentValues();
-            values.put(AGE,age);
-            db.update(PROFILE_TABLE, values, null, null);
+            values.put(AGE, age);
+
+            if(Integer.toString(getAge()) == null){
+                long newId = db.insert(PROFILE_TABLE, null, values);
+            } else {
+                db.update(PROFILE_TABLE, values, null, null);
+            }
+//            db.update(PROFILE_TABLE, values, null, null);
             db.close();
         }
         catch(SQLiteException sle){
@@ -322,8 +328,14 @@ public class DatabaseManager extends SQLiteOpenHelper {
         try{
             SQLiteDatabase db = this.getWritableDatabase();
             ContentValues values = new ContentValues();
-            values.put(WEIGHT,weight);
-            db.update(PROFILE_TABLE, values, null, null);
+            values.put(WEIGHT, weight);
+
+            if(Integer.toString(getWeight()) == null){
+                long newId = db.insert(PROFILE_TABLE, null, values);
+            } else {
+                db.update(PROFILE_TABLE, values, null, null);
+            }
+//            db.update(PROFILE_TABLE, values, null, null);
             db.close();
         }
         catch(SQLiteException sle){
@@ -336,7 +348,13 @@ public class DatabaseManager extends SQLiteOpenHelper {
             SQLiteDatabase db = this.getWritableDatabase();
             ContentValues values = new ContentValues();
             values.put(GENDER,gender.toUpperCase());
-            db.update(PROFILE_TABLE, values, null, null);
+
+            if(getGender() == null){
+                long newId = db.insert(PROFILE_TABLE, null, values);
+            } else {
+                db.update(PROFILE_TABLE, values, null, null);
+            }
+//            db.update(PROFILE_TABLE, values, null, null);
             db.close();
         }
         catch(SQLiteException sle){

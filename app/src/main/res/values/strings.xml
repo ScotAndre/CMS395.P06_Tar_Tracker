@@ -62,4 +62,7 @@
     <string name="button_save_label">Save</string>
     <string name="button_cancel_label">Cancel</string>
     <string name="title_activity_update_bac">UpdateBac</string>
+    <string name="name_error">Please enter your name</string>
+    <string name="age_error">Please enter your age</string>
+    <string name="weight_error">Please enter your weight</string>
 </resources>

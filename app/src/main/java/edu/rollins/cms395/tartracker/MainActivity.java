@@ -49,7 +49,9 @@ public class MainActivity extends AppCompatActivity {
 
         configSounds();
 
-        UpdateBac ubac = new UpdateBac();
+//        UpdateBac ubac = new UpdateBac();
+//        ubac.startActivity(
+        updateDisplay(null);
 
         //TODO: If userName in database is empty, call PersonalSettingsActivity
 //        if(db.getName().equals("")){
@@ -122,40 +124,27 @@ public class MainActivity extends AppCompatActivity {
                 performAnimation(R.anim.combo);
                 tvCurrentState.setText(R.string.sobriety_leathaly_drunk);
             }
-//            switch (bac.getSobrietyLevel()){
-//                case 0:
-//                    performAnimation(R.anim.spin);
-//                    current_state.setText(R.string.sobriety_suprisingly_sober);
-//                    break;
-//                case 1:
-//                    // sober
-//                    performAnimation(R.anim.spin);
-//                    current_state.setText(R.string.sobriety_sober);
-//                    break;
-//                case 2:
-//                    // tipsy
-//                    performAnimation(R.anim.combo);
-//                    current_state.setText(R.string.sobriety_tipsy);
-//                    break;
-//                case 3:
-//                    // drunk
-//                    performAnimation(R.anim.spin);
-//                    current_state.setText(R.string.sobriety_drunk);
-//                    break;
-//                case 4:
-//                    // dangerously drunk
-//                    performAnimation(R.anim.combo);
-//                    current_state.setText(R.string.sobriety_danger_drunk);
-//                    break;
-//                case 5:
-//                    // leathly drunk
-//                    performAnimation(R.anim.combo);
-//                    current_state.setText(R.string.sobriety_leathaly_drunk);
-//                    break;
-//                case 6:
-//                    // Error
-//                    break;
-//            }
+        }
+    }
+
+    public void updateDisplay(View view){
+        if (bac.getDrinkCount() != 0 ) {
+            if(bac.getBac() == 0.0 && bac.getDrinkCount() == 0){
+                performAnimation(R.anim.spin);
+                tvCurrentState.setText(R.string.sobriety_suprisingly_sober);
+            } else if(bac.getBac() < bac.BAC_PER_SE_LIMIT_DEFAULT && bac.getDrinkCount() > 2){
+                performAnimation(R.anim.spin);
+                tvCurrentState.setText(R.string.sobriety_tipsy);
+            } else if(bac.getBac() >= bac.BAC_PER_SE_LIMIT_DEFAULT && bac.getBac() < bac.BAC_ENHANCED_LIMIT_DEFAULT){
+                performAnimation(R.anim.spin);
+                tvCurrentState.setText(R.string.sobriety_drunk);
+            } else if(bac.getBac() >= bac.BAC_ENHANCED_LIMIT_DEFAULT && bac.getBac() < bac.BAC_ENHANCED_LIMIT_DEFAULT * 3){
+                performAnimation(R.anim.combo);
+                tvCurrentState.setText(R.string.sobriety_danger_drunk);
+            } else if(bac.getBac() >= bac.BAC_ENHANCED_LIMIT_DEFAULT * 3){
+                performAnimation(R.anim.combo);
+                tvCurrentState.setText(R.string.sobriety_leathaly_drunk);
+            }
         }
     }
 

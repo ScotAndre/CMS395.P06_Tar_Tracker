@@ -24,7 +24,7 @@
                 android:text="@string/button_refresh"
                 android:layout_weight="1"
                 style="@style/buttonStyle"
-                android:onClick="refreshBac"
+                android:onClick=""
                 />
             <!-- <Button
                 android:id="@+id/button_game"
