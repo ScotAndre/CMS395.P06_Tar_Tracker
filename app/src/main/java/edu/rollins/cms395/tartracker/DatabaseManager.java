@@ -292,7 +292,12 @@ public class DatabaseManager extends SQLiteOpenHelper {
             SQLiteDatabase db = this.getWritableDatabase();
             ContentValues values = new ContentValues();
             values.put(NAME,name);
-            db.update(PROFILE_TABLE, values, null, null);
+
+            if(getName() == null){
+                long newId = db.insert(PROFILE_TABLE, null, values);
+            } else {
+                db.update(PROFILE_TABLE, values, null, null);
+            }
             db.close();
         }
         catch(SQLiteException sle){

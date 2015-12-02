@@ -27,6 +27,7 @@
                 android:paddingTop="10dp"
                 android:textSize="20sp"
                 android:layout_weight=".75"
+                style="@style/textViewStyle"
                 />
             <EditText
                 android:id="@+id/user_name"
@@ -52,6 +53,7 @@
                 android:paddingTop="10dp"
                 android:textSize="20sp"
                 android:layout_weight=".75"
+                style="@style/textViewStyle"
                 />
             <ToggleButton
                 android:id="@+id/toggle_gender"
@@ -60,8 +62,8 @@
                 android:textOn="@string/toggle_male"
                 android:textOff="@string/toggle_female"
                 android:checked="true"
-                android:layout_weight=".5
-                "
+                android:layout_weight=".5"
+                style="@style/buttonStyle"
                 />
         </LinearLayout>
 
@@ -78,6 +80,7 @@
                 android:textSize="20sp"
                 android:padding="10dp"
                 android:layout_weight=".75"
+                style="@style/textViewStyle"
                 />
             <EditText
                 android:id="@+id/use_age"
@@ -102,6 +105,7 @@
                 android:textSize="20sp"
                 android:paddingTop="10dp"
                 android:layout_weight=".75"
+                style="@style/textViewStyle"
                 />
             <EditText
                 android:id="@+id/user_weight"
@@ -124,6 +128,7 @@
                 android:text="@string/button_save_label"
                 android:layout_weight="1"
                 android:onClick="saveButtonClicked"
+                style="@style/buttonStyle"
                 />
             <Button
                 android:id="@+id/button_cancel"
@@ -132,6 +137,7 @@
                 android:text="@string/button_cancel_label"
                 android:layout_weight="1"
                 android:onClick="cancelButtonClicked"
+                style="@style/buttonStyle"
                 />
         </LinearLayout>
 

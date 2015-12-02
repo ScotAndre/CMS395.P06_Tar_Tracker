@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     private SoundPool soundPool;
     private int soundBeerPour;
-//    private DatabaseManager db;
+    private DatabaseManager db;
 
 
 
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         // instantiate the BacCalculator and DatabaseManager
         bac = new BacCalculator(this);
-//        db = new DatabaseManager( this );
+        db = new DatabaseManager( this );
 
         // instantiate the two TextViews
         tvDrinkCount = (TextView) findViewById(R.id.drink_count);
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         UpdateBac ubac = new UpdateBac();
 
         //TODO: If userName in database is empty, call PersonalSettingsActivity
-//        if(db.getName() == null){
+//        if(db.getName().equals("")){
 //            setPersonalSettings(null);
 //        }
 

@@ -14,11 +14,14 @@ public class PersonalSettingsActivity extends AppCompatActivity {
     private EditText etUserAge;
     private EditText etUserWeight;
     private ToggleButton tbUserGender;
+    private DatabaseManager db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_settings);
+
+        db = new DatabaseManager(this);
 
         //TODO: Get values from database and insert them into appropriate field
     }
@@ -54,10 +57,20 @@ public class PersonalSettingsActivity extends AppCompatActivity {
         String userName = etUserName.getText().toString().trim();
         int userAge = Integer.parseInt(etUserAge.getText().toString().trim());
         int userWeight = Integer.parseInt(etUserWeight.getText().toString().trim());
+//        String userGender = tbUserGender.getText();
 
-        if(userName == null){
+        StringBuffer sbUserGender = new StringBuffer();
+        sbUserGender.append(tbUserGender.getText());
+        String userGender = sbUserGender.toString();
 
-        }
+        //TODO: Finish saveButtonClicked
+//        db.setName(userName);
+//        db.setAge(userAge);
+//        db.setWeight(userWeight);
+//        db.setGender(userGender);
+
+        db.insertProfile(userName, userAge, userWeight, userGender);
+        startActivity(new Intent(this, MainActivity.class));
     }
 
     public void cancelButtonClicked(View view){
