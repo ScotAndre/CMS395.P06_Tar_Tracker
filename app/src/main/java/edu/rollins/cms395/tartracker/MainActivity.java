@@ -96,18 +96,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickAddDrink(View view){
-//        Toast.makeText(this, "Drink Button Clicked", Toast.LENGTH_LONG).show();
         bac.addDrink();
-        int drinkCount = bac.getDrinkCount();
-//        Toast.makeText(this, "# of Drinks = " + bac.getDrinkCount(), Toast.LENGTH_LONG).show();
-        tvDrinkCount.setText("" + drinkCount);
-        tvBacLevel.setText("" + bac.getBac());
-
         soundPool.play(soundBeerPour, 1, 1, 1, 0, 1.0f);
 
-//        TextView current_state = ( TextView )findViewById( R.id.current_state );
-
-        if (drinkCount != 0 ) {
+        // keep this to maintain the animations
+        if (bac.getDrinkCount() != 0 ) {
             if(bac.getBac() == 0.0 && bac.getDrinkCount() == 0){
                 performAnimation(R.anim.spin);
                 tvCurrentState.setText(R.string.sobriety_suprisingly_sober);
@@ -131,21 +124,17 @@ public class MainActivity extends AppCompatActivity {
         tvDrinkCount.setText(Integer.toString(bac.getDrinkCount()));
         tvBacLevel.setText(Double.toString(bac.getBac()));
 
+        // no animations here
         if (bac.getDrinkCount() != 0 ) {
             if(bac.getBac() == 0.0 && bac.getDrinkCount() == 0){
-//                performAnimation(R.anim.spin);
                 tvCurrentState.setText(R.string.sobriety_suprisingly_sober);
             } else if(bac.getBac() < bac.BAC_PER_SE_LIMIT_DEFAULT && bac.getDrinkCount() > 2){
-//                performAnimation(R.anim.spin);
                 tvCurrentState.setText(R.string.sobriety_tipsy);
             } else if(bac.getBac() >= bac.BAC_PER_SE_LIMIT_DEFAULT && bac.getBac() < bac.BAC_ENHANCED_LIMIT_DEFAULT){
-//                performAnimation(R.anim.spin);
                 tvCurrentState.setText(R.string.sobriety_drunk);
             } else if(bac.getBac() >= bac.BAC_ENHANCED_LIMIT_DEFAULT && bac.getBac() < bac.BAC_ENHANCED_LIMIT_DEFAULT * 3){
-//                performAnimation(R.anim.combo);
                 tvCurrentState.setText(R.string.sobriety_danger_drunk);
             } else if(bac.getBac() >= bac.BAC_ENHANCED_LIMIT_DEFAULT * 3){
-//                performAnimation(R.anim.combo);
                 tvCurrentState.setText(R.string.sobriety_leathaly_drunk);
             }
         }
