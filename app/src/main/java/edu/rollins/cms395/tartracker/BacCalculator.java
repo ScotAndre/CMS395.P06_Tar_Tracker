@@ -2,6 +2,7 @@ package edu.rollins.cms395.tartracker;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -26,9 +27,10 @@ public class BacCalculator {
     private static final double BAC_DISSIPATION_RATE = 0.00125;
 
     private DatabaseManager db;
-    private int mDrinkCount = 0;
+    private int mDrinkCount;
     private Context mContext;
     private boolean isMale = true;
+    private boolean isUnderage = false;
 
     // Default Values:
     public static final double BAC_PER_SE_LIMIT_DEFAULT = 0.08;
@@ -43,11 +45,21 @@ public class BacCalculator {
     private double mUnderageBacLimit;
     private double mEnhancedBacLimit;
     private int mWeight;
+    private double mDistRate;
     private int mLegalDrinkingAge;
 
     public BacCalculator(Context context){
         mContext = context;
         db = new DatabaseManager(mContext);
+
+        // set defaults
+        mWeight = AVERAGE_MALE_WEIGHT;
+        mDistRate = MALE_DIST_RATE;
+        mLegalDrinkingAge = LEGAL_AGE_DEFAULT;
+        mDrinkCount = 0;
+        mPerSeBacLimit = BAC_PER_SE_LIMIT_DEFAULT;
+        mUnderageBacLimit = BAC_UNDERAGE_LIMIT_DEFAULT;
+        mEnhancedBacLimit = BAC_ENHANCED_LIMIT_DEFAULT;
     }
 
     public int getDrinkCount(){
@@ -64,6 +76,7 @@ public class BacCalculator {
     }
 
     public double getBac(){
+        checkForPreferences();
         // 5 minutes is 300,000 milliseconds
         // 50 minutes is 3,000,000 milliseconds
         // 60 minutes is 3,600,000 milliseconds
@@ -76,20 +89,19 @@ public class BacCalculator {
         ArrayList<Long> drinks = new ArrayList<Long>();
         drinks = db.getDrinks();
 
-        //TODO: Will need to get rid of this when preferences are implemented
         if(isMale){
-            weight = AVERAGE_MALE_WEIGHT;
-            distRate = MALE_DIST_RATE;
+            mWeight = AVERAGE_MALE_WEIGHT;
+            mDistRate = MALE_DIST_RATE;
         } else {
-            weight = AVERAGE_FEMALE_WEIGHT;
-            distRate = FEMALE_DIST_RATE;
+            mWeight = AVERAGE_FEMALE_WEIGHT;
+            mDistRate = FEMALE_DIST_RATE;
         }
 
         // BAC = (A * 5.14 / W * r) - 0.015 * H
         for(int i = 0; i < drinks.size(); i++){
             long drink = drinks.get(i);
             if(timeStamp - drink <= 6600000) {
-                bac += (1.5 * 5.14 / weight * distRate) - 0.015 * ((timeStamp - drink) / HOUR);
+                bac += (1.5 * 5.14 / mWeight * mDistRate) - 0.015 * ((timeStamp - drink) / HOUR);
             }
         }
         Log.d("BAC Calc ", "" + bac);
@@ -98,6 +110,29 @@ public class BacCalculator {
         String bacString = df.format(bac);
 
         return Double.parseDouble(bacString);
+    }
+
+    private void checkForPreferences(){
+        if(!db.getName().equals("")){
+            if(!Integer.toString(db.getAge()).equals("")){
+                if(db.getAge() >= mLegalDrinkingAge){
+                    isUnderage = false;
+                } else {
+                    isUnderage = true;
+                }
+            }
+            if(!Integer.toString(db.getWeight()).equals("")){
+                setWeight(db.getWeight());
+            }
+
+            if(!db.getGender().equals("")){
+                if(db.getGender().equals("FEMALE")){
+                    isMale = false;
+                } else {
+                    isMale = true;
+                }
+            }
+        }
     }
 
     public int getSobrietyLevel(){
