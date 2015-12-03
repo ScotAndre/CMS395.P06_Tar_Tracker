@@ -27,6 +27,23 @@
 
     <!-- Settings (Preferences) Activity -->
     <string name="title_activity_settings">Preferences</string>
+
+    <string name="user_name_label">Name</string>
+    <string name="user_name_hint">Enter your name</string>
+    <string name="user_gender_label">Gender</string>
+    <string name="toggle_male">Male</string>
+    <string name="toggle_female">Female</string>
+    <string name="user_age_label">Age</string>
+    <string name="user_weight_label">Weight</string>
+    <string-array name="genders">
+        <item>MALE</item>
+        <item>FEMALE</item>
+    </string-array>
+    <string-array name="gender_values">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+
     <string name="underage_title">Underage BAC Limit</string>
     <string name="underage_bac_summary">Underage BAC Limit</string>
     <string name="underage_bac_default_value">0.02%</string>
@@ -53,13 +70,7 @@
 
     <!-- Personal Settings -->
     <string name="title_activity_personal_settings">Personal Settings</string>
-    <string name="user_name_label">Name</string>
-    <string name="user_name_hint">Enter your name</string>
-    <string name="user_gender_label">Gender</string>
-    <string name="toggle_male">Male</string>
-    <string name="toggle_female">Female</string>
-    <string name="user_age_label">Age</string>
-    <string name="user_weight_label">Weight</string>
+
     <string name="button_save_label">Save</string>
     <string name="button_cancel_label">Cancel</string>
     <string name="title_activity_update_bac">UpdateBac</string>

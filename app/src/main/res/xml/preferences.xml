@@ -3,6 +3,32 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <EditTextPreference
+        android:key="user_name"
+        android:title="@string/user_name_label"
+        android:summary="@string/user_name_hint"
+        />
+
+    <EditTextPreference
+        android:key="user_age"
+        android:title="@string/user_age_label"
+        android:numeric="integer"
+        />
+
+    <ListPreference
+        android:key="user_gender"
+        android:title="@string/user_gender_label"
+        android:entries="@array/genders"
+        android:entryValues="@array/gender_values"
+        android:defaultValue="0"
+        />
+
+    <EditTextPreference
+        android:key="user_weight"
+        android:title="@string/user_weight_label"
+        android:numeric="integer"
+        />
+
+    <EditTextPreference
         android:key="underage_bac_limit"
         android:title="@string/underage_title"
         android:summary="@string/underage_bac_summary"
