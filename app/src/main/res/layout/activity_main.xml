@@ -35,7 +35,6 @@
                 android:onClick="loadGame"
                 style="@style/buttonStyle"
                 />
-            -->
             <Button
                 android:id="@+id/button_personal"
                 android:layout_width="match_parent"
@@ -45,6 +44,7 @@
                 style="@style/buttonStyle"
                 android:onClick="setPersonalSettings"
                 />
+            -->
         </LinearLayout>
 
         <LinearLayout
